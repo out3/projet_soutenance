@@ -8,6 +8,6 @@ const contactSchema = new mongoose.Schema({
     phoneNumber: { type: Number, min: 0000000000, max : 9999999999}
 })
 
-const Application = mongoose.model("Application", applicationSchema);
+const Contact = mongoose.model("Contact", contactSchema);
 
-module.exports = Application;
+module.exports = Contact;

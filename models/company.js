@@ -1,4 +1,6 @@
-const mongoose = require("mongoose");
+const mongoose = require("mongoose")
+      User     = require("../models/user"),
+      Contact  = require("../models/contact");
 
 const companySchema = new mongoose.Schema({
     name: String,

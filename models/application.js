@@ -1,6 +1,8 @@
-const mongoose = require("mongoose");
+const mongoose = require("mongoose"),
+      User     = require("../models/user"),
+      Update   = require("../models/update");
 
-const applicationSchema = new mongoose.Schema({
+var applicationSchema = new mongoose.Schema({
     text: String,
     postedAt: {type: Date, default: Date.now},
     author: {
@@ -15,6 +17,6 @@ const applicationSchema = new mongoose.Schema({
     }]
 })
 
-const Application = mongoose.model("Application", applicationSchema);
+var Application = mongoose.model("Application", applicationSchema);
 
 module.exports = Application;

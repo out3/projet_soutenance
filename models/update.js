@@ -5,6 +5,6 @@ const updateSchema = new mongoose.Schema({
     postedAt: {type: Date, default: Date.now}
 })
 
-const Application = mongoose.model("Application", applicationSchema);
+const Update = mongoose.model("Update", updateSchema);
 
-module.exports = Application;
+module.exports = Update;

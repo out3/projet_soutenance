@@ -9,6 +9,16 @@ const express               = require("express"),
       methodOverride        = require("method-override"),
       flash                 = require("connect-flash");
 
+// Import models
+const User        = require("./models/user"),
+      Application = require("./models/application"),
+      Update      = require("./models/update"),
+      Company     = require("./models/company"),
+      Contact     = require("./models/contact");
+
+// Import Routes
+const indexRoutes = require("./routes/index");
+
 // Setup Server
 const server_port = 8080,
       server_host = "localhost";
@@ -44,7 +54,7 @@ app.use(function(req, res, next){
 })
 
 // Express routes
-
+app.use("/", indexRoutes);
 
 // Route test
 app.get("/",function(req, res){
