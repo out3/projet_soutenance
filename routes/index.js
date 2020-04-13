@@ -5,32 +5,49 @@ const express   = require("express");
 
 // Index route
 router.get("/", function(req, res){
-    res.send("Index route");
+    res.render("home");
 })
 
 // Register Route
 router.get("/register", function(req, res){
-    res.send("Register router");
+    res.render("users/register");
 })
 
 // Register logic
 router.post("/register", function(req, res){
-    res.send("You have been registered")
+    let newUser = new User({
+        username: req.body.username,
+        firstName: req.body.firstName,
+        lastName: req.body.lastName
+    });
+    User.register(newUser, req.body.password, function (err, userCreated){
+        if (err) {
+            console.log(err)
+        } else {
+            passport.authenticate("local")(req, res, function(){
+                res.redirect("/")
+            })
+        }
+    })
 })
 
 // Login route
 router.get("/login", function(req,res){
-    res.send("Login route");
+    res.render("users/login");
 })
 
 // Login logic
-router.post("/login", function(req, res){
-    res.send("You got logged on")
-})
+
+router.post('/login', passport.authenticate('local', {
+    successRedirect: '/',
+    failureRedirect: '/login',
+}), function(req, res){
+});
 
 // Logout Route
 router.get("/logout", function(req, res){
-    res.send("Logout")
+    req.logout();
+    res.redirect("/");
 })
 
 module.exports = router;

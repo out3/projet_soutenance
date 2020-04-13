@@ -56,11 +56,6 @@ app.use(function(req, res, next){
 // Express routes
 app.use("/", indexRoutes);
 
-// Route test
-app.get("/",function(req, res){
-    res.send("TEST")
-})
-
 // Launch Server on Port 8080
 app.listen(server_port, server_host, function(){
     console.log("Server has started on " + server_host + ":" + server_port)
