@@ -1,0 +1,38 @@
+project_stage/
+	routes/
+		stages/
+			index.js
+			candidature.js
+			new_candidature.js
+			new_update.js
+
+		entreprises/
+			index.js
+			entreprise.js
+			new_entreprise.js
+			new_contact.js
+		admin/
+			index.js
+			review.js
+	middlewares/
+		isLoggedInAsStudent.js
+		isLoggedInAsTeacher.js
+
+	models/
+		user.js
+		candidature.js
+		update.js
+		entreprise.js
+		contact.js
+	public/
+		css/
+		js/
+		img/
+	views/
+		candidatures/
+		entreprises/
+		admin/
+		partials/
+	app.js
+	package.json
+
