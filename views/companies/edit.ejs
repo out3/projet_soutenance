@@ -1,0 +1,10 @@
+<form action="/companies/<%=company._id%>?_method=put" method="post">
+    <input type="text" name="company[name]" value="<%=company.name%>">
+    <input type="text" name="company[address]" value="<%=company.address%>">
+    <input type="number" name="company[postalCode]" value="<%=company.postalCode%>">
+    <input type="text" name="company[city]" value="<%=company.city%>">
+    <input type="number" name="company[phoneNumber]" value="<%=company.phoneNumber%>">
+    <input type="text" name="company[links[website]]" value="<%=company.links.website%>">
+    <input type="text" name="company[links[linkedin]]" value="<%=company.links.linkedin%>">
+    <input type="submit" value="Modifier entreprise">
+</form>

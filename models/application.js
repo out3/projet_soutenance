@@ -5,6 +5,7 @@ const mongoose = require("mongoose"),
 var applicationSchema = new mongoose.Schema({
     text: String,
     postedAt: {type: Date, default: Date.now},
+    currentState: {type: String, default: "En cours"},
     author: {
         id: {
             type: mongoose.Schema.Types.ObjectId,

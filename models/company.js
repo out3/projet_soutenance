@@ -8,6 +8,10 @@ const companySchema = new mongoose.Schema({
     postalCode: { type: Number, min: 00000, max : 99999},
     city: {type: String, lowercase: true},
     phoneNumber: { type: Number, min: 0000000000, max : 9999999999},
+    links: {
+        website: {type: String, lowercase: true},
+        linkedin: {type: String, lowercase: true}
+    },
     author: {
         id: {
             type: mongoose.Schema.Types.ObjectId,
