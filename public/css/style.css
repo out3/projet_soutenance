@@ -1,0 +1,31 @@
+
+body {
+    background-color: rgb(240, 240, 240);
+}
+
+h4 .fa-user-circle, h4 .fa-user-plus{
+    font-size: 3em;
+}
+
+.card-text i.fas.fa-home, .card-text i.fas.fa-phone-square-alt, .card-text i.fas.fa-globe-europe, .card-text i.fab.fa-linkedin{
+    font-size: 3em;
+}
+.card-text i.fa-circle {
+    font-size: 0.8em;
+}
+
+p.company-address {
+    text-transform: capitalize;
+}
+
+.card-text.phone-number {
+    font-size: 1.2em;
+}
+
+.links-icons a {
+    color: #343a40;
+}
+
+.links-icons a:hover {
+    color: #0e76a8;
+}

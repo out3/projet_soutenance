@@ -1,0 +1,20 @@
+<%- include('../partials/header')%>
+
+<div class="d-flex justify-content-center">
+    <div class="col-sm-10 col-md-9 col-lg-8">
+        <% companies.forEach(company => { %>
+            <div class="card mb-3">
+                <div class="card-body">
+                    <h3 class="card-title"><%=company.name%> - <%=company.city%></h3>
+                    <p class="card-text text-secondary">
+                        Candidature : en cours <i class="fas fa-circle text-warning"></i>
+                        <a href="/companies/<%=company._id%>"><button class="btn btn-sm btn-info float-right">Plus d'infos</button></a>
+                    </p>
+                </div>
+            </div>
+        <% }); %>
+    </div>
+</div>
+
+
+<%- include('../partials/footer')%>

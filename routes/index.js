@@ -5,7 +5,7 @@ const express   = require("express");
 
 // Index route
 router.get("/", function(req, res){
-    res.render("home");
+    res.render("home")
 })
 
 // Register Route

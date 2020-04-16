@@ -2,30 +2,30 @@
 
 <div class="container">
     <div class="col">
-        <h4 class="text-center mb-4"><span class="bg-secondary p-2 rounded text-light">Modifier : <%=company.name%></span></h4>
+        <h4 class="text-center mb-4"><span class="bg-secondary p-2 rounded text-light">Ajouter une nouvelle entreprise</span></h4>
         <div class="row justify-content-center">
-            <form class="col-lg-5 col-md-6 col-sm-8 col-10" action="/companies/<%=company._id%>?_method=put" method="post">
+            <form class="col-lg-5 col-md-6 col-sm-8 col-10" action="/companies" method="post">
                 <div class="form-group">
                     <label for="inputName">Nom de l'entreprise</label>
-                    <input class="form-control" type="text" name="company[name]" id="inputName" value="<%=company.name%>">
+                    <input class="form-control" type="text" name="company[name]" id="inputName">
                 </div>
                 <div class="form-group">
                     <label for="inputAddress">Adresse</label>
-                    <input class="form-control" type="text" name="company[address]" id="inputAddress" value="<%=company.address%>">
+                    <input class="form-control" type="text" name="company[address]" id="inputAddress" >
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-4">
                         <label for="inputPostalCode">Code postal</label>
-                        <input class="form-control" type="number" name="company[postalCode]" id="inputPostalCode" value="<%=company.postalCode%>">
+                        <input class="form-control" type="number" name="company[postalCode]" id="inputPostalCode" >
                     </div>
                     <div class="form-group col-md-8">
                         <label for="inputCity">Ville</label>
-                        <input class="form-control" type="text" name="company[city]" id="inputCity" value="<%=company.city%>">
+                        <input class="form-control" type="text" name="company[city]" id="inputCity" >
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="inputPhoneNumber">Numéro de téléphone</label>
-                    <input class="form-control" type="text" name="company[phoneNumber]" id="inputPhoneNumber" value="<%=company.phoneNumber%>">
+                    <input class="form-control" type="text" name="company[phoneNumber]" id="inputPhoneNumber">
                 </div>
                 <div class="form-group">
                     <label for="inputLinks">Liens utiles</label>
@@ -33,17 +33,17 @@
                         <div class="input-group-prepend">
                         <div class="input-group-text">@</div>
                         </div>
-                        <input type="text" class="form-control" name="company[links[website]]" placeholder="Site web" value="<%=company.links.website%>">
+                        <input type="text" class="form-control" name="company[links[website]]" placeholder="Site web">
                     </div>
                     <div class="input-group mb-2 mr-sm-2">
                         <div class="input-group-prepend">
                         <div class="input-group-text">@</div>
                         </div>
-                        <input type="text" class="form-control" name="company[links[linkedin]]" placeholder="Linkedin" value="<%=company.links.linkedin%>">
+                        <input type="text" class="form-control" name="company[links[linkedin]]" placeholder="Linkedin">
                     </div>
                 </div>
                 <div class="input-form">
-                    <button class="form-control btn btn-md btn-outline-dark btn-block" type="submit">Modifier</button>
+                    <button class="form-control btn btn-md btn-dark btn-block" type="submit">Ajouter</button>
                 </div>
             </form>
         </div>

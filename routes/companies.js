@@ -10,13 +10,13 @@ router.get("/", middleware.isLoggedIn, function(req, res){
         if (err) {
             console.log(err)
         } else {
-            res.send(allCompanies)
+            res.render("companies/index", {companies: allCompanies})
         }
     })
 })
 // New company route
 router.get("/new", middleware.isLoggedIn, function(req, res){
-    res.render("companies/add")
+    res.render("companies/new")
 })
 
 // New company Logic
