@@ -1,5 +1,4 @@
 <%- include('../partials/header') %>
-
 <div class="d-flex justify-content-center">
     <div class="col-sm-11 col-md-10 col-lg-9">
             <div class="card mb-3">
@@ -9,7 +8,7 @@
                     <div class="row justify-content-around">
                         <div class="col-xl-5 col-md-8 col-sm-12">
                             <div class="row justify-content-center align-items-center">
-                                <p class="card-text pt-3 pr-3"><i class="fas fa-home"></i></p>
+                                <p class="card-text pt-3 pr-3"><i class="fas fa-home fa-3x"></i></p>
                                 <p class="card-text align-self-center company-address">
                                     <%=company.name%><br>
                                     <%=company.address%><br>
@@ -18,17 +17,22 @@
                             </div>    
                         </div>
                         <div class="col-xl-4 col-md-4 col-sm-12 row justify-content-center align-items-center">
-                            <p class="card-text pt-3 pr-3"><i class="fas fa-phone-square-alt"></i></p>
+                            <p class="card-text pt-3 pr-3"><i class="fas fa-phone-square-alt fa-3x"></i></p>
                             <p class="card-text phone-number"><%=company.phoneNumber%></p>
                         </div>
                         <div class="col-xl-3 col-md-6 col-sm-12 row justify-content-md-around justify-content-center">
-                            <p class="card-text pt-3 mr-5 links-icons"><a href="<%=company.links.website%>" target="_blank"><i class="fas fa-globe-europe"></i></a></p>
-                            <p class="card-text pt-3 links-icons"><a href="<%=company.links.linkedin%>" target="_blank"><i class="fab fa-linkedin"></i></a></p>
+                            <p class="card-text pt-3 mr-5 links-icons"><a href="<%=company.links.website%>" target="_blank"><i class="fas fa-globe-europe fa-3x"></i></a></p>
+                            <p class="card-text pt-3 links-icons"><a href="<%=company.links.linkedin%>" target="_blank"><i class="fab fa-linkedin fa-3x"></i></a></p>
                         </div>
+                    </div>
+                    <hr>
+                    <div class="row justify-content-end mr-1">
+                        <a href="/companies/<%=company._id%>/edit"><button type="button" class="btn btn-warning btn-md mr-2">Modifier</button></a>
+                        <form action="/companies/<%=company._id%>?_method=delete" method="post"><input type="submit" class="btn btn-danger btn-md" value="Supprimer"></input></form>
                     </div>
                 </div>
                 <div class="card-footer text-light">
-                    <a href="/companies/contact/new"><button type="button" class="btn btn-dark btn-md float-right">Ajouter un nouveau contact</button></a>
+                    <a href="/companies/<%=company._id%>/contacts/new"><button type="button" class="btn btn-dark btn-md float-right">Ajouter un nouveau contact</button></a>
                 </div>
             </div>
     </div>

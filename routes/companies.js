@@ -24,6 +24,7 @@ router.post("/", middleware.isLoggedIn, function(req, res){
     // Retrieve data from form
     let newCompany = req.body.company;
     newCompany.author = {id: req.user._id};
+    newCompany.links = req.body.links
     // Create new company entry
     Company.create(newCompany, function(err, companyCreated){
         if (err) {
@@ -59,7 +60,9 @@ router.get("/:companyID/edit", middleware.checkCompanyOwnership, function(req, r
 
 // Edit company logic
 router.put("/:companyID", middleware.checkCompanyOwnership, function(req, res){
-    Company.findOneAndUpdate(req.params.companyID, req.body.company, function(err, companyUpdated){
+    let newCompany = req.body.company;
+    newCompany.links = req.body.links
+    Company.findOneAndUpdate(req.params.companyID, newCompany, function(err, companyUpdated){
         res.redirect("/companies/" + req.params.companyID)
     })
 })
