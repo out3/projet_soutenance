@@ -5,7 +5,11 @@ const express   = require("express");
 
 // Index route
 router.get("/", function(req, res){
-    res.render("home")
+    if(req.isAuthenticated()){
+        res.redirect("/companies")
+    } else {
+        res.redirect("/login")
+    }
 })
 
 // Register Route

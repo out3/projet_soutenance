@@ -1,6 +1,7 @@
 const express    = require("express");
       router     = express.Router(),
       Company    = require("../models/company"),
+      Contact    = require("../models/contact"),
       middleware = require("../middleware");
 
 
@@ -38,7 +39,7 @@ router.post("/", middleware.isLoggedIn, function(req, res){
 
 // Show company route
 router.get("/:companyID", middleware.isLoggedIn, function(req, res){
-    Company.findById(req.params.companyID, function(err, foundCompany){
+    Company.findById(req.params.companyID).populate("contacts").exec(function(err, foundCompany){
         if (err) {
             console.log(err)
         } else {
@@ -62,14 +63,14 @@ router.get("/:companyID/edit", middleware.checkCompanyOwnership, function(req, r
 router.put("/:companyID", middleware.checkCompanyOwnership, function(req, res){
     let newCompany = req.body.company;
     newCompany.links = req.body.links
-    Company.findOneAndUpdate(req.params.companyID, newCompany, function(err, companyUpdated){
+    Company.findByIdAndUpdate(req.params.companyID, newCompany, function(err, companyUpdated){
         res.redirect("/companies/" + req.params.companyID)
     })
 })
 
 // Delete company logic
 router.delete("/:companyID", middleware.checkCompanyOwnership, function(req, res){
-    Company.findOneAndDelete(req.params.companyID, function(err, companyRemoved){
+    Company.findByIdAndDelete(req.params.companyID, function(err, companyRemoved){
         res.redirect("/companies")
     })
 })

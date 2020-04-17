@@ -18,7 +18,8 @@ const User            = require("./models/user"),
 
 // Import Routes
 const indexRoutes     = require("./routes/index"),
-      companiesRoutes = require("./routes/companies");
+      companiesRoutes = require("./routes/companies"),
+      contactsRoutes  = require("./routes/contacts");
 
 // Setup Server
 const server_port     = 8080,
@@ -32,7 +33,7 @@ app.use(methodOverride("_method"));
 app.use(flash());
 
 // Setup mongoose
-mongoose.connect("mongodb://localhost/projet_stage", {useNewUrlParser: true, useUnifiedTopology: true});
+mongoose.connect("mongodb://localhost/projet_stage", {useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false});
 
 // Passport configuration
 app.use(require("express-session")({
@@ -56,7 +57,8 @@ app.use(function(req, res, next){
 
 // Express routes
 app.use("/", indexRoutes);
-app.use("/companies", companiesRoutes)
+app.use("/companies", companiesRoutes);
+app.use("/companies", contactsRoutes);
 
 // Launch Server on Port 8080
 app.listen(server_port, server_host, function(){

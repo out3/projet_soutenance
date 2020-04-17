@@ -16,7 +16,7 @@
                 <div class="form-row">
                     <div class="form-group col-md-4">
                         <label for="inputPostalCode">Code postal</label>
-                        <input class="form-control" type="number" name="company[postalCode]" id="inputPostalCode" value="<%=company.postalCode%>">
+                        <input class="form-control" type="text" name="company[postalCode]" id="inputPostalCode" value="<%=company.postalCode%>">
                     </div>
                     <div class="form-group col-md-8">
                         <label for="inputCity">Ville</label>
@@ -24,11 +24,13 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="inputPhoneNumber">Numéro de téléphone</label>
-                    <input class="form-control" type="text" name="company[phoneNumber]" id="inputPhoneNumber" value="<%=company.phoneNumber%>">
-                </div>
-                <div class="form-group">
-                    <label for="inputLinks">Liens utiles</label>
+                    <label for="inputLinks">Contacts</label>
+                    <div class="input-group mb-2 mr-sm-2" id="inputLinks">
+                        <div class="input-group-prepend">
+                        <div class="input-group-text"><i class="fas fa-phone-square-alt fa-"></i></div>
+                        </div>
+                        <input class="form-control" type="text" name="company[phoneNumber]" placeholder="Numéro de téléphone" value="<%=company.phoneNumber>">
+                    </div>
                     <div class="input-group mb-2 mr-sm-2" id="inputLinks">
                         <div class="input-group-prepend">
                         <div class="input-group-text">@</div>

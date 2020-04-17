@@ -3,10 +3,9 @@ const mongoose = require("mongoose"),
 
 const userSchema = new mongoose.Schema({
     username: {type: String, lowercase: true},
-    password: String,
+    password: {type: String },
     firstName: {type: String, lowercase: true},
-    lastName: {type: String, lowercase: true},
-    isAdmin: {type: Boolean, default: false}
+    lastName: {type: String, lowercase: true}
 })
 
 userSchema.plugin(passportLocalMongoose)

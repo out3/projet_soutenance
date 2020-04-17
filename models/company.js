@@ -5,9 +5,9 @@ const mongoose = require("mongoose")
 const companySchema = new mongoose.Schema({
     name: String,
     address: {type: String, lowercase: true},
-    postalCode: { type: Number, min: 00000, max : 99999},
+    postalCode: { type: String },
     city: {type: String, lowercase: true},
-    phoneNumber: { type: String},
+    phoneNumber: { type: String },
     links: {
         website: {type: String, lowercase: true},
         linkedin: {type: String, lowercase: true}

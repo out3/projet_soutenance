@@ -27,11 +27,33 @@
                     </div>
                     <hr>
                     <div class="row justify-content-end mr-1">
-                        <a href="/companies/<%=company._id%>/edit"><button type="button" class="btn btn-warning btn-md mr-2">Modifier</button></a>
-                        <form action="/companies/<%=company._id%>?_method=delete" method="post"><input type="submit" class="btn btn-danger btn-md" value="Supprimer"></input></form>
+                        <a href="/companies/<%=company._id%>/edit"><button type="button" class="btn btn-warning btn-sm mr-2">Modifier</button></a>
+                        <form action="/companies/<%=company._id%>?_method=delete" method="post"><input type="submit" class="btn btn-danger btn-sm" value="Supprimer"></input></form>
                     </div>
                 </div>
                 <div class="card-footer text-light">
+                    <div class="row">
+                        <% company.contacts.forEach(contact => { %>
+                            <div class="col-md-6 col-xl-4 mb-3">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h5 class="card-title text-dark font-weight-bold text-capitalize"><%=contact.firstName%> <%=contact.lastName%></h5>
+                                        <h6 class="card-subtitle mb-2 text-muted"><%=contact.job%></h6>
+                                        <p class="card-text text-dark">
+                                            <i class="fas fa-phone-square-alt fa-lg mr-2"></i><%=contact.phoneNumber%></br>
+                                            <i class="fas fa-envelope-square fa-lg mr-2"></i><%=contact.email%><br>
+                                            <i class="fab fa-linkedin fa-lg mr-2"></i><%=contact.linkedin%>
+                                        </p>
+                                        <hr>
+                                        <div class="row justify-content-end mr-auto">
+                                            <a href="/companies/<%=company._id%>/contacts/<%=contact._id%>/edit"><button type="button" class="btn btn-warning btn-sm mr-2">Modifier</button></a>
+                                            <form action="/companies/<%=company._id%>/contacts/<%=contact._id%>?_method=delete" method="post"><input type="submit" class="btn btn-danger btn-sm" value="Supprimer"></input></form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        <% }); %>
+                    </div>
                     <a href="/companies/<%=company._id%>/contacts/new"><button type="button" class="btn btn-dark btn-md float-right">Ajouter un nouveau contact</button></a>
                 </div>
             </div>

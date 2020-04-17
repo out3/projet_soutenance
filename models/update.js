@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 const updateSchema = new mongoose.Schema({
-    text: String,
+    text: {type: String },
     postedAt: {type: Date, default: Date.now}
 })
 
