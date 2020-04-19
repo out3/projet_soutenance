@@ -1,13 +1,10 @@
 body {
     background-color: rgb(240, 240, 240);
+    font-family: 'Open Sans', sans-serif;
 }
 
 .card-text i.fa-circle {
     font-size: 0.8em;
-}
-
-p.company-address {
-    text-transform: capitalize;
 }
 
 .card-text.phone-number {

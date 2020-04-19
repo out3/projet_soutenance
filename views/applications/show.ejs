@@ -1,0 +1,20 @@
+<%- include('../partials/header') %>
+<div class="d-flex justify-content-center">
+    <div class="col-sm-11 col-md-10 col-lg-9">
+            <div class="card mb-3">
+                <div class="card-body">
+                    <h3 class="card-title text-center">Candidature : <%=application.company.name%></h3>
+                    <hr class="pb-2">
+                    <p class="d-flex justify-content-end">
+                        <span class="text-secondary"><%=application.postedAt.toDateString()%></span>
+                    </p>
+                    <p class="border rounded p-2"><%=application.text%></p>
+                </div>
+                <div class="card-footer text-light">
+                    <a href="/companies/<%=application._id%>/updates/new"><button type="button" class="btn btn-dark btn-md float-right">Mettre à jour la candidature</button></a>
+                </div>
+            </div>
+    </div>
+</div>
+
+<%- include('../partials/footer') %>

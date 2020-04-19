@@ -5,17 +5,19 @@
         <div class="row justify-content-end mb-3 mr-auto">
             <a href="/companies/new"><button type="button" class="btn btn-success btn-md">Ajouter une nouvelle entreprise</button></a>
         </div>
-        <% companies.forEach(company => { %>
-            <div class="card mb-3">
-                <div class="card-body">
-                    <h3 class="card-title"><%=company.name%> - <%=company.city%></h3>
-                    <p class="card-text text-secondary">
-                        Candidature : en cours <i class="fas fa-circle text-warning"></i>
-                        <a href="/companies/<%=company._id%>"><button class="btn btn-sm btn-info float-right">Plus d'infos</button></a>
-                    </p>
-                </div>
+        <div class="card mb-3">
+            <div class="card-body">
+                <% for(let i = 0; i < companies.length; i++){ %>
+                    <% if(i !== 0){ %>
+                        <hr class="mt-1">
+                    <% } %>
+                    <div class="row justify-content-between mx-auto">
+                        <h4 class="card-title col-8"><%=companies[i].name%> - <span class="text-capitalize"><%=companies[i].city%></span></h4>
+                        <p class="col"><a href="/companies/<%=companies[i]._id%>"><button class="btn btn-sm btn-info float-right">Plus d'infos</button></a></p>
+                    </div>
+                    <% };%>
             </div>
-        <% }); %>
+        </div>
     </div>
 </div>
 

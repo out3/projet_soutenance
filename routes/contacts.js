@@ -1,8 +1,10 @@
-const express    = require("express");
-      router     = express.Router(),
-      Company    = require("../models/company"),
-      Contact    = require("../models/contact"),
-      middleware = require("../middleware");
+const express    = require("express"),
+      router     = express.Router();
+
+const Company    = require("../models/company"),
+      Contact    = require("../models/contact");
+
+const middleware = require("../middleware");
 
 // New contact form
 router.get("/:companyID/contacts/new", middleware.checkCompanyOwnership, function(req, res){

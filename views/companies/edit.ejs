@@ -6,10 +6,6 @@
         <div class="row justify-content-center">
             <form class="col-lg-5 col-md-6 col-sm-8 col-10" action="/companies/<%=company._id%>?_method=put" method="post">
                 <div class="form-group">
-                    <label for="inputName">Nom de l'entreprise</label>
-                    <input class="form-control" type="text" name="company[name]" id="inputName" value="<%=company.name%>">
-                </div>
-                <div class="form-group">
                     <label for="inputAddress">Adresse</label>
                     <input class="form-control" type="text" name="company[address]" id="inputAddress" value="<%=company.address%>">
                 </div>
@@ -29,7 +25,7 @@
                         <div class="input-group-prepend">
                         <div class="input-group-text"><i class="fas fa-phone-square-alt fa-"></i></div>
                         </div>
-                        <input class="form-control" type="text" name="company[phoneNumber]" placeholder="Numéro de téléphone" value="<%=company.phoneNumber>">
+                        <input class="form-control" type="text" name="company[phoneNumber]" placeholder="Numéro de téléphone" value="<%=company.phoneNumber%>">
                     </div>
                     <div class="input-group mb-2 mr-sm-2" id="inputLinks">
                         <div class="input-group-prepend">

@@ -7,20 +7,20 @@
                     <hr class="pb-2"> 
                     <div class="row justify-content-around">
                         <div class="col-xl-5 col-md-8 col-sm-12">
-                            <div class="row justify-content-center align-items-center">
+                            <div class="row justify-content-center justify-content-md-start align-items-center ml-md-3">
                                 <p class="card-text pt-3 pr-3"><i class="fas fa-home fa-3x"></i></p>
-                                <p class="card-text align-self-center company-address">
+                                <p class="card-text align-self-center text-capitalize">
                                     <%=company.name%><br>
                                     <%=company.address%><br>
                                     <%=company.postalCode%> - <%=company.city%>
                                 </p>
                             </div>    
                         </div>
-                        <div class="col-xl-4 col-md-4 col-sm-12 row justify-content-center align-items-center">
+                        <div class="col-xl-4 col-md-4 col-sm-12 row justify-content-center justify-content-md-start align-items-center">
                             <p class="card-text pt-3 pr-3"><i class="fas fa-phone-square-alt fa-3x"></i></p>
                             <p class="card-text phone-number"><%=company.phoneNumber%></p>
                         </div>
-                        <div class="col-xl-3 col-md-6 col-sm-12 row justify-content-md-around justify-content-center">
+                        <div class="col-xl-3 col-md-6 col-sm-12 row justify-content-center">
                             <p class="card-text pt-3 mr-5 links-icons"><a href="<%=company.links.website%>" target="_blank"><i class="fas fa-globe-europe fa-3x"></i></a></p>
                             <p class="card-text pt-3 links-icons"><a href="<%=company.links.linkedin%>" target="_blank"><i class="fab fa-linkedin fa-3x"></i></a></p>
                         </div>

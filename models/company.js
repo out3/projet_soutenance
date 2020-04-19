@@ -1,5 +1,6 @@
-const mongoose = require("mongoose")
-      User     = require("../models/user"),
+const mongoose = require("mongoose");
+
+const User     = require("../models/user"),
       Contact  = require("../models/contact");
 
 const companySchema = new mongoose.Schema({

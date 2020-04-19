@@ -10,20 +10,21 @@ const express               = require("express"),
       flash                 = require("connect-flash");
 
 // Import models
-const User            = require("./models/user"),
-      Application     = require("./models/application"),
-      Update          = require("./models/update"),
-      Company         = require("./models/company"),
-      Contact         = require("./models/contact");
+const User              = require("./models/user"),
+      Application       = require("./models/application"),
+      Update            = require("./models/update"),
+      Company           = require("./models/company"),
+      Contact           = require("./models/contact");
 
 // Import Routes
-const indexRoutes     = require("./routes/index"),
-      companiesRoutes = require("./routes/companies"),
-      contactsRoutes  = require("./routes/contacts");
+const indexRoutes       = require("./routes/index"),
+      companiesRoutes   = require("./routes/companies"),
+      contactsRoutes    = require("./routes/contacts"),
+      applicationRoutes = require("./routes/applications");
 
 // Setup Server
-const server_port     = 8080,
-      server_host     = "localhost";
+const server_port       = 8080,
+      server_host       = "localhost";
 
 // Setup Express
 app.use(bodyParser.urlencoded({extended: true}));
@@ -59,6 +60,7 @@ app.use(function(req, res, next){
 app.use("/", indexRoutes);
 app.use("/companies", companiesRoutes);
 app.use("/companies", contactsRoutes);
+app.use("/applications", applicationRoutes);
 
 // Launch Server on Port 8080
 app.listen(server_port, server_host, function(){

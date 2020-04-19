@@ -1,3 +1,6 @@
+const Company     = require("../models/company"),
+      Application = require("../models/application");
+
 var middlewareObj = {};
 
 middlewareObj.isLoggedIn = function(req, res, next){
@@ -14,6 +17,24 @@ middlewareObj.checkCompanyOwnership = function(req, res, next){
                 console.log(err)
             } else {
                 if(foundCompany.author.id.equals(req.user._id)){
+                    next();
+                } else {
+                    res.redirect("back")
+                }
+            }
+        })
+    } else {
+        res.redirect("back")
+    }
+}
+
+middlewareObj.checkApplicationOwnership = function(req, res, next){
+    if(req.isAuthenticated()){
+        Application.findById(req.params.applicationID, function(err, foundApplication){
+            if(err){
+                console.log(err)
+            } else {
+                if(foundApplication.author.id.equals(req.user._id)){
                     next();
                 } else {
                     res.redirect("back")

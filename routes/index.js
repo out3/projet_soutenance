@@ -1,7 +1,8 @@
-const express   = require("express");
+const express   = require("express"),
       router    = express.Router(),
-      passport  = require("passport"),
-      User      = require("../models/user") 
+      passport  = require("passport");
+
+const User      = require("../models/user") 
 
 // Index route
 router.get("/", function(req, res){
