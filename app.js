@@ -39,7 +39,7 @@ mongoose.connect("mongodb://localhost/projet_stage", {useNewUrlParser: true, use
 
 // Passport configuration
 app.use(require("express-session")({
-    secret: "oui",
+    secret: "Paraphrase test",
     resave: false,
     saveUninitialized: false
 }))

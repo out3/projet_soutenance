@@ -8,11 +8,12 @@ const middleware  = require("../middleware");
 
 // Show Index Page
 router.get("/", middleware.isLoggedIn, function(req, res){
-    Application.find({author: {id: req.user._id}}).exec(function(err, allApplications){
+    Application.find({author: {id: req.user._id}}).populate("updates").exec(function(err, allApplications){
         if (err) {
             console.log(err)
         } else {
             res.render("applications/index", {applications: allApplications})
+            console.log(allApplications)
         }
     })
 })
@@ -43,11 +44,13 @@ router.post("/", middleware.isLoggedIn, function(req, res){
             Application.create(newApplication, function(err, createdApplication){
                 if (err) {
                     console.log(err)
+                    res.redirect("/applications/new")
                 } else {
                     console.log(createdApplication)
+                    res.redirect("/applications")
                 }
             })
-            res.redirect("/applications")
+            // res.redirect("/applications")
         }
     })
    

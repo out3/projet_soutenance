@@ -27,6 +27,6 @@ var applicationSchema = new mongoose.Schema({
     }]
 })
 
-var Application = mongoose.model("Application", applicationSchema);
+var Application = mongoose.model("Application", applicationSchema, "application");
 
 module.exports = Application;

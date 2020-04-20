@@ -7,13 +7,13 @@
                 </div>
                 <div class="card-body">
                     <p class="d-flex justify-content-end">
-                        <span class="text-secondary"><%=application.postedAt.toDateString()%></span>
+                        <span class="text-secondary"><%=writeDateFR(application.postedAt)%></span>
                     </p>
                     <p class="px-2"><%=application.text%></p>
                     <% application.updates.forEach(update => {%>
                         <hr>
                         <p class="d-flex justify-content-end">
-                            <span class="text-secondary"><%=update.postedAt.toDateString()%></span>
+                            <span class="text-secondary"><%=writeDateFR(update.postedAt)%></span>
                         </p>
                         <p class="px-2"><%-update.text.replace('\n', '<br>')%></p>
                     <%});%>
@@ -26,3 +26,18 @@
 </div>
 
 <%- include('../partials/footer') %>
+
+<% 
+writeDateFR = function(date) {
+        let months = ["janvier", "février", "mars", "avril", "mai", "juin", "juillet", "août", "septembre", "octobre", "novembre", "décembre"];
+        let nb = date.getDate()
+        let month = months[date.getMonth()]
+        let year = date.getFullYear()
+        let hour = date.getHours()
+        if (hour < 10) {hour = "0" + hour}
+        let minutes = date.getMinutes()
+        if (minutes < 10) {minutes = "0" + minutes}
+        let result = nb + " " + month + " " + year + " à " + hour + ":" + minutes
+        return result;
+    }
+%> 

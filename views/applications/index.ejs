@@ -1,21 +1,5 @@
 <%- include('../partials/header')%>
 
-<% writeCurrentState = function(currentState) {
-        switch(currentState) {
-            case 0:
-                return "En cours <i class='fas fa-circle text-warning'></i>"
-                break;
-            case 1:
-                return "Acceptée <i class='fas fa-circle text-success'></i>"
-                break;
-            case 2:
-                return "Refusée <i class='fas fa-circle text-danger'></i>"
-                break;
-            default:
-                return "Erreur."
-        }
-} %>
-
 <div class="d-flex justify-content-center">
     <div class="col-sm-10 col-md-9 col-lg-8">
         <div class="row justify-content-end mb-3 mr-auto">
@@ -26,8 +10,8 @@
                 <div class="card-body">
                     <h3 class="card-title"><a href="/companies/<%=application.company.id%>"><%=application.company.name%></a></h3>
                     <p class="card-text text-secondary">
-                        Créé : <%=application.postedAt.toDateString()%><br>
-                        Dernière mise à jour : dsqdqsdq<br>
+                        Créé : <%-writeDateFR(application.postedAt)%><br>
+                        <%-writeLastUpdateDate(application.updates)%>
                         Etat : <%-writeCurrentState(application.currentState)%>
                         <a href="/applications/<%=application._id%>"><button class="btn btn-sm btn-info float-right">Plus d'infos</button></a>
                     </p>
@@ -38,3 +22,43 @@
 </div>
 
 <%- include('../partials/footer')%>
+
+<% writeCurrentState = function(currentState) {
+    switch(currentState) {
+        case 0:
+            return "En cours <i class='fas fa-circle text-warning'></i>"
+            break;
+        case 1:
+            return "Acceptée <i class='fas fa-circle text-success'></i>"
+            break;
+        case 2:
+            return "Refusée <i class='fas fa-circle text-danger'></i>"
+            break;
+        default:
+            return "Erreur."
+    };
+}
+
+writeLastUpdateDate = function(updates){
+    let lastUpdate = ""
+    if(updates.length > 0){
+        lastUpdate = "Dernière mise à jour : " + writeDateFR(updates[updates.length-1].postedAt) + "<br>"
+        return lastUpdate;
+    } else {
+        return "";
+    }
+} 
+
+writeDateFR = function(date) {
+    let months = ["janvier", "février", "mars", "avril", "mai", "juin", "juillet", "août", "septembre", "octobre", "novembre", "décembre"];
+    let nb = date.getDate()
+    let month = months[date.getMonth()]
+    let year = date.getFullYear()
+    let hour = date.getHours()
+    if (hour < 10) {hour = "0" + hour}
+    let minutes = date.getMinutes()
+    if (minutes < 10) {minutes = "0" + minutes}
+    let result = nb + " " + month + " " + year + " à " + hour + ":" + minutes
+    return result;
+}
+%>

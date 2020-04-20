@@ -9,6 +9,6 @@ const contactSchema = new mongoose.Schema({
     phoneNumber: { type: String}
 })
 
-const Contact = mongoose.model("Contact", contactSchema);
+const Contact = mongoose.model("Contact", contactSchema, "contact");
 
 module.exports = Contact;
