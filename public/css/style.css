@@ -1,6 +1,6 @@
 body {
-    background-color: rgb(240, 240, 240);
     font-family: 'Open Sans', sans-serif;
+    background-color: rgb(240, 240, 240) !important;
 }
 
 .card-text i.fa-circle {

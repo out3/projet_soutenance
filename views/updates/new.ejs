@@ -1,0 +1,20 @@
+<%- include('../partials/header')%>
+
+<div class="container">
+    <div class="col">
+        <h4 class="text-center mb-4"><span class="bg-secondary p-2 rounded text-light">Mettre à jour la candidature : <%=application.company.name%></span></h4>
+        <div class="row justify-content-center">
+            <form class="col" action="/applications/<%=application._id%>/updates" method="post">
+                <div class="form-group">
+                    <label for="inputText">Actions effectuées</label>
+                    <textarea class="form-control" name="update[text]" id="inputText" rows="10"></textarea>
+                </div>
+                <div class="input-form">
+                    <button class="form-control btn btn-md btn-dark btn-block" type="submit">Mettre à jour la candidature</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<%- include('../partials/footer')%>

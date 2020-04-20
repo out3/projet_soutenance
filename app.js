@@ -20,7 +20,8 @@ const User              = require("./models/user"),
 const indexRoutes       = require("./routes/index"),
       companiesRoutes   = require("./routes/companies"),
       contactsRoutes    = require("./routes/contacts"),
-      applicationRoutes = require("./routes/applications");
+      applicationRoutes = require("./routes/applications"),
+      updateRoutes      = require("./routes/updates");
 
 // Setup Server
 const server_port       = 8080,
@@ -60,7 +61,8 @@ app.use(function(req, res, next){
 app.use("/", indexRoutes);
 app.use("/companies", companiesRoutes);
 app.use("/companies", contactsRoutes);
-app.use("/applications", applicationRoutes);
+app.use("/applications", applicationRoutes),
+app.use("/applications", updateRoutes);
 
 // Launch Server on Port 8080
 app.listen(server_port, server_host, function(){

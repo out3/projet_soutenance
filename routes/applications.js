@@ -2,8 +2,6 @@ const express     = require("express"),
       router      = express.Router();
 
 const Application = require("../models/application"),
-      Update      = require("../models/update"),
-      User        = require("../models/user"),
       Company     = require("../models/company");
 
 const middleware  = require("../middleware");
@@ -30,7 +28,7 @@ router.get("/new", middleware.isLoggedIn, function(req, res){
     })
 })
 
-// New Page Logic
+// New Application Logic
 router.post("/", middleware.isLoggedIn, function(req, res){
     Company.findById(req.body.company, function(err, foundCompany){
         if (err) {
@@ -57,7 +55,7 @@ router.post("/", middleware.isLoggedIn, function(req, res){
 
 // Show application page
 router.get("/:applicationID", middleware.isLoggedIn, function(req, res){
-    Application.findById(req.params.applicationID, function(err, foundApplication){
+    Application.findById(req.params.applicationID).populate("updates").exec(function(err, foundApplication){
         if (err) {
             console.log(err)
         } else {
