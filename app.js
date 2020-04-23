@@ -23,10 +23,6 @@ const indexRoutes       = require("./routes/index"),
       applicationRoutes = require("./routes/applications"),
       updateRoutes      = require("./routes/updates");
 
-// Setup Server
-const server_port       = 8080,
-      server_host       = "localhost";
-
 // Setup Express
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
@@ -35,7 +31,7 @@ app.use(methodOverride("_method"));
 app.use(flash());
 
 // Setup mongoose
-mongoose.connect("mongodb://localhost/projet_stage", {useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false});
+mongoose.connect(process.env.DATABASEURL, {useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false});
 
 // Passport configuration
 app.use(require("express-session")({
@@ -65,6 +61,6 @@ app.use("/applications", applicationRoutes),
 app.use("/applications", updateRoutes);
 
 // Launch Server on Port 8080
-app.listen(server_port, server_host, function(){
-    console.log("Server has started on " + server_host + ":" + server_port)
+app.listen(process.env.PORT, process.env.IP, function(){
+    console.log("Server has started on " + process.env.IP + ":" + process.env.PORT)
 })

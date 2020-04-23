@@ -4,23 +4,23 @@
     <div class="col">
         <h4 class="text-center mb-4"><span class="bg-secondary p-2 rounded text-light">Ajouter une nouvelle entreprise</span></h4>
         <div class="row justify-content-center">
-            <form class="col-lg-5 col-md-6 col-sm-8 col-10" action="/companies" method="post">
+            <form class="col-lg-5 col-md-6 col-sm-8 col-10 needs-validation" action="/companies" method="post" novalidate>
                 <div class="form-group">
                     <label for="inputName">Nom de l'entreprise</label>
-                    <input class="form-control" type="text" name="company[name]" id="inputName">
+                    <input class="form-control" type="text" name="company[name]" id="inputName" required>
                 </div>
                 <div class="form-group">
                     <label for="inputAddress">Adresse</label>
-                    <input class="form-control" type="text" name="company[address]" id="inputAddress" >
+                    <input class="form-control" type="text" name="company[address]" id="inputAddress" required>
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-4">
                         <label for="inputPostalCode">Code postal</label>
-                        <input class="form-control" type="text" name="company[postalCode]" id="inputPostalCode" >
+                        <input class="form-control input-postal-code" type="text" name="company[postalCode]" id="inputPostalCode" required>
                     </div>
                     <div class="form-group col-md-8">
                         <label for="inputCity">Ville</label>
-                        <input class="form-control" type="text" name="company[city]" id="inputCity" >
+                        <input class="form-control" type="text" name="company[city]" id="inputCity" required>
                     </div>
                 </div>
                 <div class="form-group">
@@ -29,23 +29,23 @@
                         <div class="input-group-prepend">
                         <div class="input-group-text"><i class="fas fa-phone-square-alt fa-"></i></div>
                         </div>
-                        <input class="form-control" type="text" name="company[phoneNumber]" placeholder="Numéro de téléphone">
+                        <input class="form-control input-phone-number" type="text" name="company[phoneNumber]" placeholder="Numéro de téléphone" norequired>
                     </div>
                     <div class="input-group mb-2 mr-sm-2" id="inputLinks">
                         <div class="input-group-prepend">
                         <div class="input-group-text"><i class="fas fa-link fa-sm"></i></div>
                         </div>
-                        <input type="text" class="form-control" name="links[website]" placeholder="Site web">
+                        <input type="url" class="form-control input-website" name="links[website]" placeholder="Site web">
                     </div>
                     <div class="input-group mb-2 mr-sm-2">
                         <div class="input-group-prepend">
                         <div class="input-group-text"><i class="fab fa-linkedin"></i></div>
                         </div>
-                        <input type="text" class="form-control" name="links[linkedin]" placeholder="Linkedin">
+                        <input type="url" class="form-control input-linkedin" name="links[linkedin]" placeholder="Linkedin">
                     </div>
                 </div>
                 <div class="input-form">
-                    <button class="form-control btn btn-md btn-dark btn-block" type="submit">Ajouter</button>
+                    <button class="btn btn-md btn-dark btn-block" type="submit">Ajouter</button>
                 </div>
             </form>
         </div>
