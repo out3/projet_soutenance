@@ -1,5 +1,4 @@
 <%- include('../partials/header')%>
-
 <div class="container">
     <div class="col">
         <h4 class="text-center mb-4"><span class="bg-secondary p-2 rounded text-light">Mettre à jour la candidature : <%=application.company.name%></span></h4>
@@ -7,7 +6,7 @@
             <form class="col needs-validation" action="/applications/<%=application._id%>/updates" method="post" novalidate>
                 <div class="form-group">
                     <label for="inputText">Actions effectuées</label>
-                    <textarea class="form-control" name="update[text]" id="inputText" rows="10" spellcheck required></textarea>
+                    <textarea class="form-control" name="update[text]" id="inputTextTiny" rows="15" spellcheck required></textarea>
                     <div class="invalid-feedback">
                         Veuillez décrire les différentes actions réalisées.
                     </div>
@@ -20,4 +19,5 @@
     </div>
 </div>
 
+<%- include('../js/tinymce')%>
 <%- include('../partials/footer')%>

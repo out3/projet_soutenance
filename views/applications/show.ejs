@@ -11,7 +11,7 @@
                     <p class="d-flex justify-content-end">
                         <span class="text-secondary"><%=writeDateFR(application.postedAt)%></span>
                     </p>
-                    <p class="px-2"><%=application.text%></p>
+                    <p class="px-2"><%-application.text%></p>
                     <% application.updates.forEach(update => {%>
                         <hr>
                         <p class="d-flex justify-content-end">
