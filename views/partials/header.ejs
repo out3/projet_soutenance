@@ -1,40 +1,57 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Suivi de stage</title>
-    <!-- Fonts  -->
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans" rel="stylesheet">
-    <!-- CSS -->
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <link rel="stylesheet" href="/css/style.css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/8.4.6/css/intlTelInput.css" rel="stylesheet" />
-    <!-- Font Awesome Icons -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js" crossorigin="anonymous"></script>
-  </head>
-<body class="mb-4"> 
-    <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
-        <div class="container">
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-              <div class="navbar-nav mr-auto">
-                  <a class="nav-item nav-link" href="/">Accueil</a>
-                  <% if(currentUser) {%>
-                    <a class="nav-item nav-link" href="/companies">Mes entreprises</a>
-                    <a class="nav-item nav-link" href="/applications">Mes candidatures</a>
-                  <% } %>
-              </div>
-              <div class="navbar-nav">
-                  <% if(!currentUser) { %>
-                    <a class="nav-item nav-link" href="/login">Se connecter</a>
-                    <a class="nav-item nav-link" href="/register">S'inscrire</a>
-                  <% } else { %>
-                    <a class="nav-item nav-link" href="/logout">Se déconnecter</a>
-                  <% } %>
-              </div>
-            </div>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Suivi de stage</title>
+  <!-- Fonts  -->
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans" rel="stylesheet">
+  <!-- CSS -->
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <link rel="stylesheet" href="/css/style.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/8.4.6/css/intlTelInput.css" rel="stylesheet" />
+  <!-- Font Awesome Icons -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js" crossorigin="anonymous">
+  </script>
+</head>
+
+<body class="mb-4">
+  <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
+    <div class="container">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <div class="navbar-nav mr-auto">
+          <a class="nav-item nav-link" href="/">Accueil</a>
+          <% if(currentUser) {%>
+          <a class="nav-item nav-link" href="/companies">Mes entreprises</a>
+          <a class="nav-item nav-link" href="/applications">Mes candidatures</a>
+          <% } %>
         </div>
-      </nav>
+        <div class="navbar-nav">
+          <% if(!currentUser) { %>
+          <a class="nav-item nav-link" href="/login">Se connecter</a>
+          <a class="nav-item nav-link" href="/register">S'inscrire</a>
+          <% } else { %>
+          <a class="nav-item nav-link" href="/logout">Se déconnecter</a>
+          <% } %>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <div class="container">
+    <% if(error && error.length > 0) { %>
+    <div class="alert alert-danger" role="alert">
+      <%=error%>
+    </div>
+    <% }; %>
+    <% if(success && success.length > 0) { %>
+    <div class="alert alert-success" role="alert">
+      <%=success%>
+    </div>
+    <% }; %>
+  </div>

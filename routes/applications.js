@@ -10,7 +10,8 @@ const middleware  = require("../middleware");
 router.get("/", middleware.isLoggedIn, function(req, res){
     Application.find({author: {id: req.user._id}}).populate("updates").exec(function(err, allApplications){
         if (err) {
-            console.log(err)
+            req.flash("error", req.message);
+            return res.redirect("/")
         } else {
             res.render("applications/index", {applications: allApplications})
         }
@@ -21,7 +22,8 @@ router.get("/", middleware.isLoggedIn, function(req, res){
 router.get("/new", middleware.isLoggedIn, function(req, res){
     Company.find({author: {id: req.user._id}}, function(err, allCompanies){
         if (err) {
-            console.log(err)
+            req.flash("error", err.message);
+            return res.redirect("/")
         } else {
             res.render("applications/new", {companies: allCompanies})
         }
@@ -42,14 +44,13 @@ router.post("/", middleware.isLoggedIn, function(req, res){
             };
             Application.create(newApplication, function(err, createdApplication){
                 if (err) {
-                    console.log(err)
-                    res.redirect("/applications/new")
+                    req.flash("error", err.message);
+                    return res.redirect("/applications/new")
                 } else {
-                    console.log(createdApplication)
+                    req.flash("success", "Votre candidature a bien été créée.")
                     res.redirect("/applications")
                 }
             })
-            // res.redirect("/applications")
         }
     })
    
@@ -59,7 +60,8 @@ router.post("/", middleware.isLoggedIn, function(req, res){
 router.get("/:applicationID", middleware.isLoggedIn, function(req, res){
     Application.findById(req.params.applicationID).populate("updates").exec(function(err, foundApplication){
         if (err) {
-            console.log(err)
+            req.flash("error", err.message)
+            return res.redirect("/applications")
         } else {
             res.render("applications/show", {application: foundApplication})
         }

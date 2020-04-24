@@ -10,7 +10,8 @@ const middleware  = require("../middleware");
 router.get("/:applicationID/updates/new", middleware.checkApplicationOwnership, function(req, res){
     Application.findById(req.params.applicationID, function(err, foundApplication){
         if (err) {
-            console.log(err)
+            req.flash("error", err.message);
+            return res.redirect("/applications/" + req.params.applicationID);
         } else {
             res.render("updates/new", {application: foundApplication});
         }
@@ -21,17 +22,18 @@ router.get("/:applicationID/updates/new", middleware.checkApplicationOwnership, 
 router.post("/:applicationID/updates", middleware.checkApplicationOwnership, function(req, res){
     Application.findById(req.params.applicationID, function(err, foundApplication){
         if (err) {
-            console.log(err)
+            req.flash("error", err.message);
+            return res.redirect("/applications/" + req.params.applicationID);
         } else {
             Update.create(req.body.update, function(err, newUpdate){
                 if (err) {
-                    console.log(err)
+                    req.flash("error", err.message);
+                    return res.redirect("/applications" + req.params.applicationID);
                 } else {
                     foundApplication.updates.push(newUpdate);
                     foundApplication.save();
-                    console.log(newUpdate)
+                    res.redirect("/applications/" + req.params.applicationID)
                 }
-                res.redirect("/applications/" + req.params.applicationID)
             })
         }
     })
