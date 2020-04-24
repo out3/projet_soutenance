@@ -13,7 +13,6 @@ router.get("/", middleware.isLoggedIn, function(req, res){
             console.log(err)
         } else {
             res.render("applications/index", {applications: allApplications})
-            console.log(allApplications)
         }
     })
 })
