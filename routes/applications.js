@@ -20,40 +20,60 @@ router.get("/", middleware.isLoggedIn, function(req, res){
 
 // Show New Page
 router.get("/new", middleware.isLoggedIn, function(req, res){
-    Company.find({author: {id: req.user._id}}, function(err, allCompanies){
-        if (err) {
-            req.flash("error", err.message);
-            return res.redirect("/")
-        } else {
-            res.render("applications/new", {companies: allCompanies})
-        }
+    Application.find({author: {id: req.user._id}}, function(err, allApplications){
+        let excludeCompanyId = [];
+        allApplications.forEach(application => {
+           excludeCompanyId.push(application.company.id)
+        });
+        Company.find({
+            author: {id: req.user._id},
+           _id: {$nin : excludeCompanyId}
+        }, function(err, allCompanies){
+            if (err) {
+                req.flash("error", err.message);
+                return res.redirect("/")
+            } else {
+                res.render("applications/new", {companies: allCompanies})
+            }
+        })
     })
 })
 
 // New Application Logic
 router.post("/", middleware.isLoggedIn, function(req, res){
-    Company.findById(req.body.company, function(err, foundCompany){
-        if (err) {
-            console.log(err)
-        } else {
-            let newApplication = req.body.application;
-            newApplication.author = {id: req.user._id};
-            newApplication.company = {
-                id: foundCompany._id,
-                name: foundCompany.name
-            };
-            Application.create(newApplication, function(err, createdApplication){
-                if (err) {
-                    req.flash("error", err.message);
-                    return res.redirect("/applications/new")
+    Application.find({author: {id: req.user._id}}, function(err, allApplications){
+        let excludeCompanyId = [];
+        allApplications.forEach(application => {
+           excludeCompanyId.push(application.company.id.toString())
+        });
+        Company.findById(req.body.company, function(err, foundCompany){
+            if (err) {
+                req.flash("error", err.message)
+                res.redirect("/applications")
+            } else {
+                if (!excludeCompanyId.includes(foundCompany._id.toString())){
+                    let newApplication = req.body.application;
+                    newApplication.author = {id: req.user._id};
+                    newApplication.company = {
+                        id: foundCompany._id,
+                        name: foundCompany.name
+                    };
+                    Application.create(newApplication, function(err, createdApplication){
+                        if (err) {
+                            req.flash("error", err.message);
+                            res.redirect("/applications/new")
+                        } else {
+                            req.flash("success", "Votre candidature a bien été créée.")
+                            res.redirect("/applications")
+                        }
+                    })
                 } else {
-                    req.flash("success", "Votre candidature a bien été créée.")
+                    req.flash("error", "Une candidature existe déjà pour cette entreprise.")
                     res.redirect("/applications")
                 }
-            })
-        }
+            }
+        })
     })
-   
 })
 
 // Show application page
