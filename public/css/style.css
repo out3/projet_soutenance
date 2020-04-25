@@ -1,16 +1,10 @@
+/* General */
 body {
     font-family: 'Open Sans', sans-serif;
     background-color: rgb(240, 240, 240) !important;
 }
 
-.card-text i.fa-circle {
-    font-size: 0.8em;
-}
-
-.card-text.phone-number {
-    font-size: 1.2em;
-}
-
+/* Companies Page */
 .links-icons a {
     color: #343a40;
 }

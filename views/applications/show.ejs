@@ -20,9 +20,20 @@
                         <p class="px-2"><%-update.text.replace('\n', '<br>')%></p>
                     <%});%>
                 </div>
-                <div class="card-footer text-light">
-                    <a href="/applications/<%=application._id%>/updates/new"><button type="button" class="btn btn-dark btn-md float-right">Mettre à jour la candidature</button></a>
-                </div>
+                <% if(application.currentState === 0) {%>
+                    <div class="card-footer text-light d-flex align-items-center justify-content-between">
+                        <div class="d-flex">
+                            <form action="/applications/<%=application._id%>/state/accepted?_method=put" method="post">
+                                <button class="btn btn-success">Acceptée</button>
+                            </form>
+                            <form action="/applications/<%=application._id%>/state/refused?_method=put" method="post">
+                                <button class="btn btn-danger">Refusée</button>
+                            </form>
+                        </div>
+
+                        <a href="/applications/<%=application._id%>/updates/new"><button type="button" class="btn btn-dark btn-md align-self-end">Mettre à jour la candidature</button></a>
+                    </div>
+                <% };%>
             </div>
     </div>
 </div>

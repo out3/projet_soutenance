@@ -48,6 +48,7 @@ router.get("/login", function (req, res) {
 router.post('/login', passport.authenticate('local', {
     successRedirect: '/',
     failureRedirect: '/login',
+    failureFlash: "Nom d'utilisateur ou mot de passe invalide."
 }), function (req, res) {});
 
 // Logout Route

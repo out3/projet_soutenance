@@ -53,4 +53,15 @@ middlewareObj.checkApplicationOwnership = function(req, res, next){
     }
 }
 
+middlewareObj.checkIfApplicationIsNotClosed = function(req, res, next){
+    Application.findById(req.params.applicationID, function(err, foundApplication){
+        if(foundApplication.currentState === 0){
+            next()
+        } else{
+            req.flash("error", "Cette candidature a déjà été traitée. Aucune modification n'est possible.")
+            res.redirect("back")
+        }
+    })
+}
+
 module.exports = middlewareObj;

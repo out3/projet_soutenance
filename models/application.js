@@ -7,6 +7,7 @@ const User     = require("../models/user"),
 var applicationSchema = new mongoose.Schema({
     text: {type: String},
     postedAt: {type: Date, default: Date.now},
+    // 0 : In progress | 1 : Accepted | 2 : Refused
     currentState: {type: Number, min: 0, max: 2, default: 0},
     company: {
         id: {

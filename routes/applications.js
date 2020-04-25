@@ -88,5 +88,30 @@ router.get("/:applicationID", middleware.isLoggedIn, function(req, res){
     })
 })
 
+// Change application state to accepted
+router.put("/:applicationID/state/accepted", middleware.checkIfApplicationIsNotClosed, function(req, res){
+    Application.findByIdAndUpdate(req.params.applicationID, {currentState: 1}, function(err, updatedApplication){
+        if (err) {
+            req.flash("error", err.message)
+            res.redirect("/applications/" + req.params.applicationID)
+        } else {
+            req.flash("info", "La candidature a été acceptée ! Aucune modification n'est possible à présent.")
+            res.redirect("/applications/" + req.params.applicationID)
+        }
+    })
+})
+
+// Change application state to refused
+router.put("/:applicationID/state/refused", middleware.checkIfApplicationIsNotClosed, function(req, res){
+    Application.findByIdAndUpdate(req.params.applicationID, {currentState: 2}, function(err, updatedApplication){
+        if (err) {
+            req.flash("error", err.message)
+            res.redirect("/applications/" + req.params.applicationID)
+        } else {
+            req.flash("info", "La candidature a été refusée. Aucune modification n'est possible à présent.")
+            res.redirect("/applications/" + req.params.applicationID)
+        }
+    })
+})
 
 module.exports = router;
