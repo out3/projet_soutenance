@@ -21,17 +21,17 @@
                     <%});%>
                 </div>
                 <% if(application.currentState === 0) {%>
-                    <div class="card-footer text-light d-flex align-items-center justify-content-between">
+                    <div class="card-footer text-light d-flex align-items-center justify-content-between flex-column flex-sm-row">
                         <div class="d-flex">
                             <form action="/applications/<%=application._id%>/state/accepted?_method=put" method="post">
-                                <button class="btn btn-success">Acceptée</button>
+                                <button class="btn btn-success mr-2">Acceptée</button>
                             </form>
                             <form action="/applications/<%=application._id%>/state/refused?_method=put" method="post">
-                                <button class="btn btn-danger">Refusée</button>
+                                <button class="btn btn-danger mr-2">Refusée</button>
                             </form>
                         </div>
 
-                        <a href="/applications/<%=application._id%>/updates/new"><button type="button" class="btn btn-dark btn-md align-self-end">Mettre à jour la candidature</button></a>
+                        <a href="/applications/<%=application._id%>/updates/new"><button type="button" class="btn btn-dark btn-md mt-2 mt-sm-0">Mettre à jour la candidature</button></a>
                     </div>
                 <% };%>
             </div>
