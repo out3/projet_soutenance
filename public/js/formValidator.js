@@ -1,3 +1,4 @@
+// Bootstrap's forms validation function
 (function () {
   'use strict';
   window.addEventListener('load', function () {
@@ -32,3 +33,8 @@ const inputPostalCode = document.querySelectorAll('.input-postal-code');
 for (const input of inputPostalCode) {
   input.pattern = "[0-9]{5}"
 }
+
+// Modal opening
+$('#modalConfirm').on('shown.bs.modal', function () {
+  this.trigger('focus')
+})

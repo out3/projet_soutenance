@@ -1,63 +1,105 @@
 <%- include('../partials/header') %>
 <div class="d-flex justify-content-center">
-    <div class="col-sm-11 col-md-10 col-lg-9">
-            <div class="card mb-3">
-                <div class="card-body">
-                    <h3 class="card-title text-center"><%=company.name%></h3>
-                    <hr class="pb-2"> 
-                    <div class="row justify-content-around">
-                        <div class="col-xl-5 col-md-8 col-sm-12">
-                            <div class="row justify-content-center justify-content-md-start align-items-center ml-md-3">
-                                <p class="card-text pt-3 pr-3"><i class="fas fa-home fa-3x"></i></p>
-                                <p class="card-text align-self-center text-capitalize">
-                                    <%=company.name%><br>
-                                    <%=company.address%><br>
-                                    <%=company.postalCode%> - <%=company.city%>
-                                </p>
-                            </div>    
-                        </div>
-                        <div class="col-xl-4 col-md-4 col-sm-12 row justify-content-center justify-content-md-start align-items-center">
-                            <p class="card-text pt-3 pr-3"><i class="fas fa-phone-square-alt fa-3x"></i></p>
-                            <p class="card-text phone-number"><%=company.phoneNumber%></p>
-                        </div>
-                        <div class="col-xl-3 col-md-6 col-sm-12 row justify-content-center">
-                            <p class="card-text pt-3 mr-5 links-icons"><a href="<%=company.links.website%>" target="_blank"><i class="fas fa-globe-europe fa-3x"></i></a></p>
-                            <p class="card-text pt-3 links-icons"><a href="<%=company.links.linkedin%>" target="_blank"><i class="fab fa-linkedin fa-3x"></i></a></p>
-                        </div>
-                    </div>
-                    <hr>
-                    <div class="row justify-content-end mr-1">
-                        <a href="/companies/<%=company._id%>/edit"><button type="button" class="btn btn-warning btn-sm mr-2">Modifier</button></a>
-                        <form action="/companies/<%=company._id%>?_method=delete" method="post"><input type="submit" class="btn btn-danger btn-sm" value="Supprimer"></input></form>
-                    </div>
-                </div>
-                <div class="card-footer text-light">
-                    <div class="row">
-                        <% company.contacts.forEach(contact => { %>
-                            <div class="col-md-6 col-xl-4 mb-3">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <h5 class="card-title text-dark font-weight-bold text-capitalize"><%=contact.firstName%> <%=contact.lastName%></h5>
-                                        <h6 class="card-subtitle mb-2 text-muted"><%=contact.job%></h6>
-                                        <p class="card-text text-dark">
-                                            <i class="fas fa-phone-square-alt fa-lg mr-2"></i><%=contact.phoneNumber%></br>
-                                            <i class="fas fa-envelope-square fa-lg mr-2"></i><%=contact.email%><br>
-                                            <i class="fab fa-linkedin fa-lg mr-2"></i><%=contact.linkedin%>
-                                        </p>
-                                        <hr>
-                                        <div class="row justify-content-end mr-auto">
-                                            <a href="/companies/<%=company._id%>/contacts/<%=contact._id%>/edit"><button type="button" class="btn btn-warning btn-sm mr-2">Modifier</button></a>
-                                            <form action="/companies/<%=company._id%>/contacts/<%=contact._id%>?_method=delete" method="post"><input type="submit" class="btn btn-danger btn-sm" value="Supprimer"></input></form>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        <% }); %>
-                    </div>
-                    <a href="/companies/<%=company._id%>/contacts/new"><button type="button" class="btn btn-dark btn-md float-right">Ajouter un nouveau contact</button></a>
-                </div>
-            </div>
+	<div class="col-sm-11 col-md-10 col-lg-9">
+		<div class="card mb-3">
+			<div class="card-body">
+				<h3 class="card-title text-center"><%=company.name%></h3>
+				<hr class="pb-2"> 
+				<div class="row justify-content-around">
+					<div class="col-xl-5 col-md-8 col-sm-12">
+						<div class="row justify-content-center justify-content-md-start align-items-center ml-md-3">
+							<p class="card-text pt-3 pr-3"><i class="fas fa-home fa-3x"></i></p>
+							<p class="card-text align-self-center text-capitalize">
+								<%=company.name%><br>
+								<%=company.address%><br>
+								<%=company.postalCode%> - <%=company.city%>
+							</p>
+						</div>    
+					</div>
+					<% if(company.phoneNumber){ %>
+						<div class="col-xl-4 col-md-4 col-sm-12 row justify-content-center justify-content-md-start align-items-center">
+							<p class="card-text pt-3 pr-3"><i class="fas fa-phone-square-alt fa-3x"></i></p>
+							<p class="card-text phone-number"><%=company.phoneNumber%></p>
+						</div>
+					<% }; %>
+					<% if(company.links.website || company.links.linkedin){%>
+					<div class="col-xl-3 col-md-6 col-sm-12 row justify-content-center">
+						<% if(company.links.website) {%>
+							<p class="card-text pt-3 mr-5 links-icons"><a href="<%=company.links.website%>" target="_blank"><i class="fas fa-globe-europe fa-3x"></i></a></p>
+						<% }; %>
+						<% if(company.links.linkedin) {%>
+							<p class="card-text pt-3 links-icons"><a href="<%=company.links.linkedin%>" target="_blank"><i class="fab fa-linkedin fa-3x"></i></a></p>
+						<% }; %>
+					</div>
+					<% }; %>
+				</div>
+				<hr>
+				<div class="row justify-content-end mr-1">
+					<a href="/companies/<%=company._id%>/edit"><button type="button" class="btn btn-warning btn-sm mr-2">Modifier</button></a>
+					<button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modalConfirm">Supprimer</button>								
+
+				</div>
+			</div>
+			<div class="card-footer text-light">
+				<div class="row">
+					<% company.contacts.forEach(contact => { %>
+						<div class="col-md-6 col-xl-4 mb-3">
+							<div class="card">
+								<div class="card-body">
+									<h5 class="card-title text-dark font-weight-bold text-capitalize"><%=contact.firstName%> <%=contact.lastName%></h5>
+									<h6 class="card-subtitle mb-2 text-muted"><%=contact.job%></h6>
+									<p class="card-text text-dark">
+										<% if(contact.phoneNumber){ %>
+											<i class="fas fa-phone-square-alt fa-lg mr-2"></i><%=contact.phoneNumber%></br>
+										<% }; %>
+										<% if(contact.email){ %>
+											<i class="fas fa-envelope-square fa-lg mr-2"></i><%=contact.email%><br>
+											<% }; %>
+										<% if(contact.linkedin){ %>
+											<i class="fab fa-linkedin fa-lg mr-2"></i><%=contact.linkedin%>
+										<% }; %>
+									</p>
+									<hr>
+									<div class="row justify-content-end mr-auto">
+										<a href="/companies/<%=company._id%>/contacts/<%=contact._id%>/edit"><button type="button" class="btn btn-warning btn-sm mr-2">Modifier</button></a>
+										<form action="/companies/<%=company._id%>/contacts/<%=contact._id%>?_method=delete" method="post"><input type="submit" class="btn btn-danger btn-sm" value="Supprimer"></input></form>
+									</div>
+								</div>
+							</div>
+						</div>
+						<% }); %>
+					</div>
+					<a href="/companies/<%=company._id%>/contacts/new"><button type="button" class="btn btn-dark btn-md float-right">Ajouter un nouveau contact</button></a>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+<!-- Modal to confirm company's deletion -->
+<div class="modal fade" id="modalConfirm" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Supprimer "<%=company.name%>" ?</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+				<p>
+					Êtes vous sur de vouloir supprimer cette entreprise ? Cela entraînera également la suppression
+					des contacts.
+				</p>
+				<p>
+					Cette action est iréversible.
+				</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+				<form action="/companies/<%=company._id%>?_method=delete" method="post"><input type="submit" class="btn btn-danger" value="Supprimer"></input></form>
+      </div>
     </div>
+  </div>
 </div>
 
-<%- include('../partials/footer') %>
+	<%- include('../partials/footer') %>
