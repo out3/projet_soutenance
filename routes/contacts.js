@@ -64,16 +64,16 @@ router.put("/:companyID/contacts/:contactID", middleware.checkCompanyOwnership, 
     })
 })
 
-router.delete("/:companyID/contacts/:contactID/", middleware.checkCompanyOwnership, function(req, res){
-    Contact.findByIdAndDelete(req.params.contactID, function(err, deletedContact){
-        if (err) {
-            req.flash("error", err.message);
-            return res.redirect("/companies/" + req.params.companyID);
-        } else {
-            req.flash("success", "Suppression réalisée avec succés.")
-            res.redirect("/companies/" + req.params.companyID)
-        }
-    })
-})
+// router.delete("/:companyID/contacts/:contactID/", middleware.checkCompanyOwnership, function(req, res){
+//     Contact.findByIdAndDelete(req.params.contactID, function(err, deletedContact){
+//         if (err) {
+//             req.flash("error", err.message);
+//             return res.redirect("/companies/" + req.params.companyID);
+//         } else {
+//             req.flash("success", "Suppression réalisée avec succés.")
+//             res.redirect("/companies/" + req.params.companyID)
+//         }
+//     })
+// })
 
 module.exports = router;

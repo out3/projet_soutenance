@@ -75,20 +75,20 @@ router.put("/:companyID", middleware.checkCompanyOwnership, function(req, res){
     })
 })
 
-// Delete company + contacts logic
-router.delete("/:companyID", middleware.checkCompanyOwnership, function(req, res){
-    Company.findByIdAndDelete(req.params.companyID, function(err, removedCompany){
-        console.log(removedCompany)
-        for(const contact of removedCompany.contacts){
-            Contact.findByIdAndDelete(contact, function(err, removedContact){
-                if(err){
-                    req.flash("error", err.message)
-                    return res.redirect("/companies")
-                }
-            })
-        }
-        req.flash("success", "Suppression réalisée avec succés.")
-        res.redirect("/companies")
-    })
-})
+// // Delete company + contacts logic
+// router.delete("/:companyID", middleware.checkCompanyOwnership, function(req, res){
+//     Company.findByIdAndDelete(req.params.companyID, function(err, removedCompany){
+//         console.log(removedCompany)
+//         for(const contact of removedCompany.contacts){
+//             Contact.findByIdAndDelete(contact, function(err, removedContact){
+//                 if(err){
+//                     req.flash("error", err.message)
+//                     return res.redirect("/companies")
+//                 }
+//             })
+//         }
+//         req.flash("success", "Suppression réalisée avec succés.")
+//         res.redirect("/companies")
+//     })
+// })
 module.exports = router;
