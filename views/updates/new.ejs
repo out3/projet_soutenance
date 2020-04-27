@@ -1,7 +1,7 @@
 <%- include('../partials/header')%>
 <div class="container">
     <div class="col">
-        <h4 class="text-center mb-4"><span class="bg-secondary p-2 rounded text-light">Mettre à jour la candidature : <%=application.company.name%></span></h4>
+        <h4 class="text-center mb-4">Mettre à jour la candidature : <%=application.company.name%></h4>
         <div class="row justify-content-center">
             <form class="col needs-validation" action="/applications/<%=application._id%>/updates" method="post" novalidate>
                 <div class="form-group">
