@@ -6,11 +6,7 @@ const User = require("../models/user")
 
 // Index route
 router.get("/", function (req, res) {
-    if (req.isAuthenticated()) {
-        res.redirect("/companies")
-    } else {
-        res.redirect("/login")
-    }
+    res.render("home/index", {noAlert : true});
 })
 
 // Register Route
@@ -40,13 +36,17 @@ router.post("/register", function (req, res) {
 
 // Login route
 router.get("/login", function (req, res) {
-    res.render("users/login");
+    if(req.isAuthenticated()){
+        res.redirect("/applications");
+    } else {
+        res.render("users/login");
+    }
 })
 
 // Login logic
 
 router.post('/login', passport.authenticate('local', {
-    successRedirect: '/',
+    successRedirect: '/applications',
     failureRedirect: '/login',
     failureFlash: "Nom d'utilisateur ou mot de passe invalide."
 }), function (req, res) {});
@@ -55,7 +55,7 @@ router.post('/login', passport.authenticate('local', {
 router.get("/logout", function (req, res) {
     req.logout();
     req.flash("success", "Vous avez été déconnecté.")
-    res.redirect("/login");
+    res.redirect("/");
 })
 
 module.exports = router;

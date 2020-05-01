@@ -1,23 +1,24 @@
 <%- include('../partials/header')%>
+<%- include('../../js/tinymce')%>
+
 <div class="container">
-    <div class="col">
-        <h4 class="text-center mb-4">Mettre à jour la candidature : <%=application.company.name%></h4>
-        <div class="row justify-content-center">
-            <form class="col needs-validation" action="/applications/<%=application._id%>/updates" method="post" novalidate>
-                <div class="form-group">
-                    <label for="inputText">Actions effectuées</label>
-                    <textarea class="form-control" name="update[text]" id="inputTextTiny" rows="15" spellcheck required></textarea>
-                    <div class="invalid-feedback">
-                        Veuillez décrire les différentes actions réalisées.
-                    </div>
-                </div>
-                <div class="input-form">
-                    <button class="btn btn-md btn-dark btn-block" type="submit">Mettre à jour la candidature</button>
-                </div>
-            </form>
+  <div class="card mb-5">
+    <h3 class="card-head default-color white-text text-center py-4">Mettre à jour la candidature : <%=application.company.name%></h3>
+    <div class="card-body">
+      <form class="col needs-validation" action="/applications/<%=application._id%>/updates" method="post" novalidate>
+        <div class="form-group">
+        <label for="inputText">Actions effectuées</label>
+          <textarea class="form-control" name="update[text]" id="inputTextTiny" rows="15" spellcheck required></textarea>
+          <div class="invalid-feedback">
+            Veuillez décrire les différentes actions réalisées.
+          </div>
         </div>
+        <div class="input-form">
+          <button class="btn btn-default btn-block" type="submit">Mettre à jour la candidature</button>
+        </div>
+      </form>
     </div>
+  </div>
 </div>
 
-<%- include('../js/tinymce')%>
 <%- include('../partials/footer')%>

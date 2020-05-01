@@ -1,48 +1,58 @@
 <%- include("../partials/header") %>
 
 <div class="container">
-    <div class="col">
-        <div class="row justify-content-center">
-            <form class="col-lg-5 col-md-6 col-sm-8 col-10" action="/companies/<%=companyID%>/contacts/<%=contact._id%>?_method=put" method="post">
-                <h4 class="text-center p-4"><i class="fas fa-address-book fa-3x"></i></h4>
-                <div class="form-row">
-                    <div class="form-group col-md-4">
-                        <label for="inputFirstName">Prénom</label>
-                        <input class="form-control" type="text" name="contact[firstName]" id="inputFirstName" value="<%=contact.firstName%>">
-                    </div>
-                    <div class="form-group col-md-8">
-                        <label for="inputLastName">Nom</label>
-                        <input class="form-control" type="text" name="contact[lastName]" id="inputLastName" value="<%=contact.lastName%>">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="inputJob">Métier</label>
-                    <input class="form-control" type="text" name="contact[job]" id="inputJob" value="<%=contact.job%>">
-                </div>
-                <div class="input-group mb-2 mr-sm-2">
-                    <div class="input-group-prepend">
-                        <div class="input-group-text"><i class="fas fa-phone-square-alt"></i></div>
-                    </div>
-                    <input type="text" class="form-control input-phone-number" name="contact[phoneNumber]" placeholder="Numéro de téléphone" value="<%=contact.phoneNumber%>">
-                </div>
-                <div class="input-group mb-2 mr-sm-2">
-                    <div class="input-group-prepend">
-                        <div class="input-group-text"><i class="fas fa-envelope-square"></i></div>
-                    </div>
-                    <input type="email" class="form-control" name="contact[email]" placeholder="Email" value="<%=contact.email%>">
-                </div>
-                <div class="input-group mb-2 mr-sm-2">
-                    <div class="input-group-prepend">
-                        <div class="input-group-text"><i class="fab fa-linkedin"></i></div>
-                    </div>
-                    <input type="url" class="form-control input-linkedin" name="contact[linkedin]" placeholder="Linkedin" value="<%=contact.linkedin%>">
-                </div>
-                <div class="form-group pt-2">
-                    <button class="btn btn-md btn-dark btn-block" type="submit">Modifier ce contact</button>
-                </div>
-            </form>
+  <div class="d-flex justify-content-center mb-4">
+    <div class="card col-lg-6 col-md-8 col-sm-10 px-0">
+      <h4 class="card-head default-color white-text text-center py-4">
+        Modifier le contact : <strong><%=contact.firstName%> <%=contact.lastName%></strong>
+      </h4>
+      <div class="card-body">
+        <form class="needs-validation" action="/companies/<%=companyID%>/contacts/<%=contact._id%>?_method=put" method="post" novalidate>
+          <div class="form-row">
+            <div class="col">
+              <div class="md-form my-0">
+                <label for="inputFirstName">Prénom</label>
+                <input class="form-control" type="text" name="contact[firstName]" id="inputFirstName" value="<%=contact.firstName%>" required>
+              </div>
+            </div>
+            <div class="col">
+              <div class="md-form my-0">
+                <label for="inputLastName">Nom</label>
+                <input class="form-control" type="text" name="contact[lastName]" id="inputLastName" value="<%=contact.lastName%>" required>
+              </div>
+            </div>
+          </div>
+          <div class="form-group md-form">
+            <label for="inputJob">Métier</label>
+            <input class="form-control" type="text" name="contact[job]" id="inputJob" value="<%=contact.job%>" required>
+          </div>
+          <hr>
+          <div class="form-group">
+            <div class="md-form input-group">
+              <div class="input-group-prepend">
+                <div class="input-group-text md-addon"><i class="fas fa-phone-square-alt fa-lg blue-grey-text"></i></div>
+              </div>
+              <input type="text" class="form-control input-phone-number" name="contact[phoneNumber]" placeholder="Numéro de téléphone" value="<%=contact.phoneNumber%>">
+            </div>
+            <div class="md-form input-group">
+              <div class="input-group-prepend">
+                <div class="input-group-text md-addon"><i class="fas fa-envelope-square fa-lg blue-grey-text"></i></div>
+              </div>
+              <input type="email" class="form-control input-email" name="contact[email]" placeholder="Email" value="<%=contact.email%>">
+            </div>
+            <div class="md-form input-group">
+              <div class="input-group-prepend">
+                <div class="input-group-text md-addon"><i class="fab fa-linkedin fa-lg blue-grey-text"></i></div>
+              </div>
+              <input type="text" class="form-control input-linkedin" name="contact[linkedin]" placeholder="Linkedin" value="<%=contact.linkedin%>">
+            </div>
+          </div>
+        <div class="input-form">
+          <button class="btn btn-md btn-default btn-block" type="submit">Modifier ce contact</button>
         </div>
+      </form>
     </div>
+  </div>
 </div>
 
 <%- include("../partials/footer") %>

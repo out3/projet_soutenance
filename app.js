@@ -10,18 +10,18 @@ const express               = require("express"),
       flash                 = require("connect-flash");
 
 // Import models
-const User              = require("./models/user"),
-      Application       = require("./models/application"),
-      Update            = require("./models/update"),
-      Company           = require("./models/company"),
-      Contact           = require("./models/contact");
+const User                  = require("./models/user"),
+      Application           = require("./models/application"),
+      Update                = require("./models/update"),
+      Company               = require("./models/company"),
+      Contact               = require("./models/contact");
 
 // Import Routes
-const indexRoutes       = require("./routes/index"),
-      companiesRoutes   = require("./routes/companies"),
-      contactsRoutes    = require("./routes/contacts"),
-      applicationRoutes = require("./routes/applications"),
-      updateRoutes      = require("./routes/updates");
+const indexRoutes           = require("./routes/index"),
+      companiesRoutes       = require("./routes/companies"),
+      contactsRoutes        = require("./routes/contacts"),
+      applicationRoutes     = require("./routes/applications"),
+      updateRoutes          = require("./routes/updates");
 
 // Setup Express
 app.use(bodyParser.urlencoded({extended: true}));
@@ -35,9 +35,9 @@ mongoose.connect(process.env.DATABASEURL, {useNewUrlParser: true, useUnifiedTopo
 
 // Passport configuration
 app.use(require("express-session")({
-    secret: "Paraphrase test",
-    resave: false,
-    saveUninitialized: false
+  secret: "Paraphrase test",
+  resave: false,
+  saveUninitialized: false
 }))
 app.use(passport.initialize());
 app.use(passport.session());
@@ -47,11 +47,10 @@ passport.deserializeUser(User.deserializeUser());
 
 // Global variables (available in every page)
 app.use(function(req, res, next){
-    res.locals.currentUser = req.user;
-    res.locals.error = req.flash("error");
-    res.locals.success = req.flash("success");
-    res.locals.info = req.flash("info");
-    next();
+  res.locals.currentUser = req.user;
+  res.locals.error = req.flash("error");
+  res.locals.success = req.flash("success");
+  next();
 })
 
 // Express routes
@@ -63,5 +62,5 @@ app.use("/applications", updateRoutes);
 
 // Launch Server on Port 8080
 app.listen(process.env.PORT, process.env.IP, function(){
-    console.log("Server has started on " + process.env.IP + ":" + process.env.PORT)
+  console.log("Server has started on " + process.env.IP + ":" + process.env.PORT)
 })

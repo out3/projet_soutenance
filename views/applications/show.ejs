@@ -1,42 +1,40 @@
 <%- include('../partials/header') %>
-<%- include('../js/dateFormat.ejs')%>
+<%- include('../../js/dateFormat.ejs')%>
 
-<div class="d-flex justify-content-center">
-    <div class="col-sm-11 col-md-10 col-lg-9">
-            <div class="card">
-                <div class="card-header">
-                    <h3 class="card-title text-center pt-2">Candidature : <%=application.company.name%></h3>
-                </div>
-                <div class="card-body">
-                    <p class="d-flex justify-content-end">
-                        <span class="text-secondary"><%=writeDateFR(application.postedAt)%></span>
-                    </p>
-                    <p class="px-2"><%-application.text%></p>
-                    <% application.updates.forEach(update => {%>
-                        <hr>
-                        <p class="d-flex justify-content-end">
-                            <span class="text-secondary"><%=writeDateFR(update.postedAt)%></span>
-                        </p>
-                        <p class="px-2"><%-update.text.replace('\n', '<br>')%></p>
-                    <%});%>
-                </div>
-                <% if(application.currentState === 0) {%>
-                    <div class="card-footer text-light d-flex align-items-center justify-content-between flex-column flex-sm-row">
-                        <div class="d-flex">
-                            <form action="/applications/<%=application._id%>/state/accepted?_method=put" method="post">
-                                <button class="btn btn-success mr-2">Acceptée</button>
-                            </form>
-                            <form action="/applications/<%=application._id%>/state/refused?_method=put" method="post">
-                                <button class="btn btn-danger mr-2">Refusée</button>
-                            </form>
-                        </div>
-
-                        <a href="/applications/<%=application._id%>/updates/new"><button type="button" class="btn btn-dark btn-md mt-2 mt-sm-0">Mettre à jour la candidature</button></a>
-                    </div>
-                <% };%>
-            </div>
+<div class="container">
+  <div class="card mb-4">
+    <div class="card-header default-color">
+        <h3 class="card-title text-white text-center pt-2">Candidature : <%=application.company.name%></h3>
     </div>
+    <div class="card-body">
+      <p class="d-flex justify-content-end card-text">
+        <%=writeDateFR(application.postedAt)%></span>
+      </p>
+      <p class="px-2"><%-application.text%></p>
+      <% application.updates.forEach( update => {%>
+        <hr>
+        <p class="d-flex justify-content-end card-text">
+          <%=writeDateFR(update.postedAt)%>
+        </p>
+        <p class="px-2"><%-update.text%></p>
+      <%});%>
+    </div>
+    <% if(application.currentState === 0) {%>
+      <div class="card-footer text-light d-flex align-items-center justify-content-between flex-column flex-sm-row">
+        <div class="d-flex">
+          <form action="/applications/<%=application._id%>/state/accepted?_method=put" method="post">
+            <button class="btn btn-outline-dark-green mr-2">Acceptée</button>
+          </form>
+          <form action="/applications/<%=application._id%>/state/refused?_method=put" method="post">
+            <button class="btn btn-outline-danger mr-2">Refusée</button>
+          </form>
+        </div>
+        <a href="/applications/<%=application._id%>/updates/new"><button type="button" class="btn btn-default mt-2 mt-sm-0">Mettre à jour la candidature</button></a>
+      </div>
+    <% };%>
+  </div>
 </div>
-
+    
 <%- include('../partials/footer') %>
-
+  
+    

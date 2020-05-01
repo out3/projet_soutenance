@@ -1,41 +1,43 @@
 <%- include('../partials/header')%>
+<%- include('../../js/tinymce')%>
 
 <div class="container">
-    <div class="col">
-        <h4 class="text-center mb-4">Ajouter une nouvelle candidature</h4>
-        <div class="row justify-content-center">
-            <form class="col needs-validation" action="/applications" method="post" novalidate>
-                <div class="form-group">
-                    <label for="inputCompany">Entreprise</label>
-                    <div class="input-group flex-wrap">
-                        <select class="custom-select" name="company" id="inputCompany" required>
-                            <option selected disabled value="">Choisir...</option>
-                            <% companies.forEach(company => {%>
-                                <option value="<%=company._id%>"><%=company.name%></option>
-                                <%});%>
-                            </select>
-                            <div class="input-group-append">
-                                <a href="/companies/new" class="btn btn-success" type="button"><i class="fas fa-plus"></i></a>
-                            </div>
-                            <div class="invalid-feedback">
-                                Veuillez choisir l'entreprise à qui vous envoyer votre candidature. Vous pouvez également en créer une nouvelle en appuyant sur le bouton "+".
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="inputText">Actions effectuées</label>
-                        <textarea class="form-control" name="application[text]" id="inputTextTiny" rows="15" spellcheck required></textarea>
-                        <div class="invalid-feedback">
-                            Veuillez décrire les différentes actions réalisées.
-                        </div>
-                    </div>
-                    <div class="input-form">
-                    <button class="btn btn-md btn-dark btn-block" type="submit">Ajouter</button>
-                </div>
-            </form>
+  <div class="card mb-4">
+    <h3 class="card-head default-color white-text text-center py-4">
+      Ajouter une nouvelle entreprise
+    </h3>
+    <div class="card-body">
+      <form class="col needs-validation" action="/applications" method="post" novalidate>
+        <div class="form-group">
+          <label for="inputCompany">Entreprise</label>
+          <div class="input-group flex-wrap">
+            <select class="browser-default custom-select" name="company" id="inputCompany" required>
+              <option selected disabled value="">Choisir...</option>
+              <% companies.forEach(company => {%>
+                <option value="<%=company._id%>"><%=company.name%></option>
+              <%});%>
+            </select>
+            <div class="input-group-append">
+              <a class="btn btn-md btn-dark-green m-0 px-3 py-2 z-depth-0 waves-effect" href="/companies/new"><i class="fas fa-plus text-white align-bottom"></i></a>
+            </div>
+            <div class="invalid-feedback">
+              Veuillez choisir l'entreprise à qui vous avez envoyer votre candidature. Vous pouvez également en créer une nouvelle en appuyant sur le bouton "+".
+            </div>
+          </div>
         </div>
+        <div class="form-group">
+          <label for="inputText">Actions effectuées</label>
+          <textarea class="form-control" name="application[text]" id="inputTextTiny" rows="15" spellcheck required></textarea>
+          <div class="invalid-feedback">
+            Veuillez décrire les différentes actions réalisées.
+          </div>
+        </div>
+        <div class="input-form">
+          <button class="btn btn-default btn-block" type="submit">Ajouter</button>
+        </div>
+      </form>
     </div>
+  </div>
 </div>
-
-<%- include('../js/tinymce')%>
+   
 <%- include('../partials/footer')%>

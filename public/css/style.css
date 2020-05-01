@@ -1,14 +1,52 @@
 /* General */
 body {
-    font-family: 'Open Sans', sans-serif;
-    background-color: rgb(240, 240, 240) !important;
+  background: fixed linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%);
+  padding-top: 90px;
+}
+/* Required height of parents of the Full Page Carousel for proper displaying carousel itself */
+html, body, .view {
+  height: 100%;
 }
 
-/* Companies Page */
-.links-icons a {
-    color: #343a40;
+/* Full Page Carousel itself*/
+.carousel {
+  height: 100%;
+}
+.carousel .carousel-inner {
+  height: 100%;
+}
+.carousel .carousel-inner .carousel-item,
+.carousel .carousel-inner .active {
+  height: 100%;
 }
 
-.links-icons a:hover {
-    color: #0e76a8;
+
+/* Navbar animation */
+.navbar .navbar-brand .nav-title {
+  font-size:1.2rem;
+}
+.navbar {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.top-nav-collapse {
+  background-color: #1c2331;
+}
+
+/* Adding color to the Navbar on mobile */
+@media only screen and (max-width: 768px) {
+  .navbar {
+    background-color: #1c2331;
+  }
+}
+
+/* Applications index sidebar */
+.overflow-visible {
+  overflow: visible;
+}
+
+#applications-sidebar {
+  position: sticky;
+  position: -webkit-sticky;
+  top:90px;
 }
