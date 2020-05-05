@@ -1,6 +1,6 @@
 /* General */
 body {
-  background: fixed linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%);
+  background: fixed radial-gradient( circle farthest-corner at 50.3% 44.5%,  rgba(116,147,179,1) 0%, rgba(62,83,104,1) 100.2% );    /* background: fixed linear-gradient(15deg, #13547a 0%, #80d0c7 100%); */
   padding-top: 90px;
 }
 /* Required height of parents of the Full Page Carousel for proper displaying carousel itself */

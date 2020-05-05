@@ -34,11 +34,6 @@ for (const input of inputPostalCode) {
   input.pattern = "[0-9]{5}"
 }
 
-// Modal opening
-$('#modalConfirm').on('shown.bs.modal', function () {
-  this.trigger('focus')
-})
-
 // Trigger "active" when an input value is defined
 $('input[type=text], input[type=password], input[type=email], input[type=url], input[type=tel], input[type=number], input[type=search], input[type=date], input[type=time], textarea').each(function (element, i) {
   if ((element.value !== undefined && element.value.length > 0) || $(this).attr('placeholder') !== null) {

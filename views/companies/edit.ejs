@@ -10,16 +10,16 @@
         <form class="needs-validation" action="/companies/<%=company._id%>?_method=put" method="post" novalidate>
           <div class="md-form">
             <label for="inputAddress">Adresse</label>
-            <input class="form-control" type="text" name="company[address]" id="inputAddress" value="<%=company.address%>" required>
+            <input class="form-control" type="text" name="address" id="inputAddress" value="<%=company.address%>" required>
           </div>
           <div class="form-row">
             <div class="md-form col-md-4 my-0">
               <label for="inputPostalCode">Code postal</label>
-              <input class="form-control input-postal-code" type="text" name="company[postalCode]" id="inputPostalCode" value="<%=company.postalCode%>" required>
+              <input class="form-control input-postal-code" type="text" name="postalCode" id="inputPostalCode" value="<%=company.postalCode%>" required>
             </div>
             <div class="md-form col-md-8 my-0">
               <label for="inputCity">Ville</label>
-              <input class="form-control" type="text" name="company[city]" id="inputCity" value="<%=company.city%>" required>
+              <input class="form-control" type="text" name="city" id="inputCity" value="<%=company.city%>" required>
             </div>
           </div>
           <hr>
@@ -28,19 +28,19 @@
               <div class="input-group-prepend">
                 <span class="input-group-text md-addon"><i class="fas fa-phone-square-alt fa-lg blue-grey-text"></i></span>
               </div>
-              <input class="form-control input-phone-number" type="text" name="company[phoneNumber]" placeholder="Numéro de téléphone" value="<%=company.phoneNumber%>">
+              <input class="form-control input-phone-number" type="text" name="phoneNumber" placeholder="Numéro de téléphone" value="<%=company.phoneNumber%>">
             </div>
             <div class="md-form input-group" id="inputLinks">
               <div class="input-group-prepend">
                 <div class="input-group-text md-addon"><i class="fas fa-link fa-lg blue-grey-text"></i></div>
               </div>
-              <input type="url" class="form-control input-website" name="links[website]" placeholder="Site web" value="<%=company.links.website%>"> 
+              <input type="url" class="form-control input-website" name="website" placeholder="Site web" value="<%=company.links.website%>"> 
             </div>
             <div class="md-form input-group">
               <div class="input-group-prepend">
               <div class="input-group-text md-addon"><i class="fab fa-linkedin fa-lg blue-grey-text"></i></div>
               </div>
-              <input type="url" class="form-control input-linkedin" name="links[linkedin]" placeholder="Linkedin" value="<%=company.links.linkedin%>" >
+              <input type="url" class="form-control input-linkedin" name="linkedin" placeholder="Linkedin" value="<%=company.links.linkedin%>" >
             </div>
           </div>
           <div class="input-form">

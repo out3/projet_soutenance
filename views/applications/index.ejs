@@ -40,7 +40,7 @@
               <h3 class="card-title text-primary"><a href="/companies/<%=application.company.id%>"><%=application.company.name%></a></h3>
               <p class="card-text">
                 Créé : <%=writeDateFR(application.postedAt)%><br>
-                <%-writeLastUpdateDate(application.updates)%>
+                Dernière mise à jour : <%-writeDateFR(application.lastUpdated)%><br>
                 Etat : <%-writeCurrentState(application.currentState)%>
                 <a href="/applications/<%=application._id%>"><button class="btn btn-sm btn-info float-right">Plus d'infos</button></a>
               </p>
