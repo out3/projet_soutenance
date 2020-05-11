@@ -1,12 +1,13 @@
-const express = require("express"),
-      router = express.Router(),
-      passport = require("passport");
+const express     = require("express"),
+      router      = express.Router(),
+      passport    = require("passport");
 
-const User = require("../models/user")
+const User        = require("../models/user")
 
+const middleware  = require("../middleware")
 // Index route
 router.get("/", function (req, res) {
-  res.render("home/index", {noAlert : true});
+  res.render("home/index");
 })
 
 // Register Route
@@ -17,7 +18,7 @@ router.get("/register", function (req, res) {
 // Register logic
 router.post("/register", async function (req, res){
   try{
-    let newUser = await new User({
+    let newUser = new User({
       username: req.body.username,
       firstName: req.body.firstName,
       lastName: req.body.lastName
@@ -36,19 +37,23 @@ router.post("/register", async function (req, res){
 // Login route
 router.get("/login", function (req, res) {
   if(req.isAuthenticated()){
-    res.redirect("/applications");
+    if(req.user.isAdmin){
+      res.redirect("/admin/overview");
+    } else{
+      res.redirect("/applications")
+    }
   } else {
-    res.render("users/login");
+      res.render("users/login");
   }
 })
 
 // Login logic
-
 router.post('/login', passport.authenticate('local', {
-  successRedirect: '/applications',
   failureRedirect: '/login',
   failureFlash: "Nom d'utilisateur ou mot de passe invalide."
-}), function (req, res) {});
+}), function (req, res) {
+  res.redirect(middleware.loginRedirect(req, res))
+});
 
 // Logout Route
 router.get("/logout", function (req, res) {

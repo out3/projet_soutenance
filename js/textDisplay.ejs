@@ -1,0 +1,81 @@
+<%
+toDateFR = function(date) {
+  let months = ["janvier", "février", "mars", "avril", "mai", "juin", "juillet", "août", "septembre", "octobre", "novembre", "décembre"];
+  let day = date.getDate()
+  let month = months[date.getMonth()]
+  let year = date.getFullYear()
+  let hour = date.getHours()
+  if (hour < 10) {hour = "0" + hour}
+  let minutes = date.getMinutes()
+  if (minutes < 10) {minutes = "0" + minutes}
+  let result = day + " " + month + " " + year + " à " + hour + ":" + minutes
+  return result;
+}
+
+toShortDate = function(date){
+  let day = date.getDate().toString().padStart(2, 0)
+  let month = (date.getMonth()+1).toString().padStart(2, 0)
+  let year = date.getFullYear()
+  let result = day + "-" + month + "-" + year
+  return result
+}
+
+toShortDateSorting = function(date){
+  let day = date.getDate().toString().padStart(2, 0)
+  let month = (date.getMonth()+1).toString().padStart(2, 0)
+  let year = date.getFullYear()
+  let result = year + month + day
+  return result
+}
+
+toCurrentState = function(currentState) {
+  switch(currentState) {
+    case 0:
+      return "En cours <i class='fas fa-circle text-warning'></i>"
+        break;
+    case 1:
+      return "Acceptée <i class='fas fa-circle text-success'></i>"
+        break;
+    case 2:
+      return "Refusée <i class='fas fa-circle text-danger'></i>"
+        break;
+    default:
+      return "Erreur."
+  };
+}
+
+toLastUpdateDate = function(updates){
+  let lastUpdate = ""
+  if(updates.length > 0){
+    lastUpdate = "Dernière mise à jour : " + toDateFR(updates[updates.length-1].postedAt) + "<br>"
+    return lastUpdate;
+  } else {
+    return "";
+  }
+} 
+
+typeToText = function(type){
+  switch(type) {
+    case 0:
+      return "Nouvelle candidature"
+        break;
+    case 1:
+      return "Mise à jour"
+      break;
+    case 2:
+      return "Candidature acceptée"
+      break;
+    case 3:
+      return "Candidature refusée"
+      break;
+  }
+}
+
+booleanToText = function(foundInternship){
+  if(foundInternship){
+    return "<i class='fas fa-circle text-success'></i> Stage trouvé"
+  }else{
+    return "<i class='fas fa-circle text-warning'></i> Recherche en cours"
+  }
+}
+%>

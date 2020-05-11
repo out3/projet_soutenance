@@ -4,11 +4,27 @@ const Company     = require("../models/company"),
 var middlewareObj = {};
 
 middlewareObj.isLoggedIn = function(req, res, next){
-  if(req.isAuthenticated()){
+  if(req.isAuthenticated() && !req.user.isAdmin){
     return next()
   }
   req.flash("error", "Vous devez être connecté pour accéder à cette page.")
   res.redirect("/login")
+}
+
+middlewareObj.isLoggedInAsAdmin = function(req, res, next){
+  if(req.isAuthenticated() && req.user.isAdmin){
+    return next()
+  }
+  req.flash("error", "Vous n'avez pas la permission pour accéder à cette page.")
+  res.redirect("/admin/login")
+}
+
+middlewareObj.loginRedirect = function(req, res){
+  if(req.user.isAdmin){
+    return "/admin/overview"
+  } else{
+    return "/applications"
+  }
 }
 
 middlewareObj.checkCompanyOwnership = async function(req, res, next){

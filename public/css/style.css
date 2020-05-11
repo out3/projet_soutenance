@@ -50,3 +50,38 @@ html, body, .view {
   position: -webkit-sticky;
   top:90px;
 }
+
+/* Table overview admin */
+table.dataTable thead .sorting:after,
+table.dataTable thead .sorting:before,
+table.dataTable thead .sorting_asc:after,
+table.dataTable thead .sorting_asc:before,
+table.dataTable thead .sorting_asc_disabled:after,
+table.dataTable thead .sorting_asc_disabled:before,
+table.dataTable thead .sorting_desc:after,
+table.dataTable thead .sorting_desc:before,
+table.dataTable thead .sorting_desc_disabled:after,
+table.dataTable thead .sorting_desc_disabled:before {
+  bottom: .5em;
+}
+
+/* FOOTER */
+#non-footer{
+  min-height: 100vh
+}
+
+footer{
+  background-color: #1c2331;
+}
+
+.footer-links{
+  height: 65px;
+  -webkit-filter: grayscale(90%); /* Safari 6.0 - 9.0 */
+  filter: grayscale(90%);
+}
+
+.footer-links:hover{
+  -webkit-filter: grayscale(0%); /* Safari 6.0 - 9.0 */
+  filter: grayscale(0%);
+  transition: 0.3s;
+}

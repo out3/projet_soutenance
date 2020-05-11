@@ -1,5 +1,5 @@
 <%- include('../partials/header') %>
-<%- include('../../js/dateFormat.ejs')%>
+<%- include('../../js/textDisplay.ejs')%>
 
 <div class="container">
   <div class="card mb-4">
@@ -8,13 +8,13 @@
     </div>
     <div class="card-body">
       <p class="d-flex justify-content-end card-text">
-        <%=writeDateFR(application.postedAt)%></span>
+        <%=toDateFR(application.postedAt)%></span>
       </p>
       <p class="px-2"><%-application.text%></p>
       <% application.updates.forEach( update => {%>
         <hr>
         <p class="d-flex justify-content-end card-text">
-          <%=writeDateFR(update.postedAt)%>
+          <%=toDateFR(update.postedAt)%>
         </p>
         <p class="px-2"><%-update.text%></p>
       <%});%>

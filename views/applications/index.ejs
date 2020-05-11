@@ -1,5 +1,5 @@
 <%- include('../partials/header')%>
-<%- include('../../js/dateFormat.ejs')%>
+<%- include('../../js/textDisplay.ejs')%>
 
 <div class="container d-flex flex-wrap">
   <div class="col col-md-4 col-lg-3 mb-4 overflow-visible">
@@ -7,27 +7,30 @@
       <div class="d-flex justify-content-end">
         <a href="/applications/new"><button type="button" class="btn btn-dark-green">Ajouter une nouvelle candidature</button></a>   
       </div>
-      <div class="d-flex justify-content-end">
-        <button type="button" class="btn btn-default d-md-none" id="button-filter-state">Filtrer par état</button>   
-      </div>
-      <ul class="list-group mx-2 mt-2 d-md-block" id="pills-applications-tab" role="tablist" style="display:none">
-        <li class="list-group-item py-1 px-2 d-flex justify-content-between align-items-center">
-          <a class="nav-link px-1 active" id="pills-all-tab" data-toggle="pill" href="#pills-all" role="tab" aria-controls="pills-all" aria-selected="true">Toutes les candidatures</a>
-          <span class="badge badge-default badge-pill"><%=applications.length%></span>
-        </li>
-        <li class="list-group-item py-1 px-2 d-flex justify-content-between align-items-center">
-          <a class="nav-link px-1" id="pills-inprogress-tab" data-toggle="pill" href="#pills-inprogress" role="tab" aria-controls="pills-inprogress" aria-selected="false">En cours</a>
-          <span class="badge badge-default badge-pill"><%=applications.filter(x => x.currentState === 0).length%></span>
-        </li>
-        <li class="list-group-item py-1 px-2 d-flex justify-content-between align-items-center">
-          <a class="nav-link px-1" id="pills-accepted-tab" data-toggle="pill" href="#pills-accepted" role="tab" aria-controls="pills-accepted" aria-selected="false">Acceptées</a>
-          <span class="badge badge-default badge-pill"><%=applications.filter(x => x.currentState === 1).length%></span>
-        </li>
-        <li class="list-group-item py-1 px-2 d-flex justify-content-between align-items-center">
-          <a class="nav-link px-1" id="pills-refused-tab" data-toggle="pill" href="#pills-refused" role="tab" aria-controls="pills-refused" aria-selected="false">Refusées</a>
-          <span class="badge badge-default badge-pill"><%=applications.filter(x => x.currentState === 2).length%></span>
-        </li>
-      </ul>
+      <!-- Filter -->
+      <% if(applications.length !== 0) { %>
+        <div class="d-flex justify-content-end">
+          <button type="button" class="btn btn-default d-md-none" id="button-filter-state">Filtrer par état</button>   
+        </div>
+        <ul class="list-group mx-2 mt-2 d-md-block" id="pills-applications-tab" role="tablist" style="display:none">
+          <li class="list-group-item py-1 px-2 d-flex justify-content-between align-items-center">
+            <a class="nav-link px-1 active" id="pills-all-tab" data-toggle="pill" href="#pills-all" role="tab" aria-controls="pills-all" aria-selected="true">Toutes les candidatures</a>
+            <span class="badge badge-default badge-pill"><%=applications.length%></span>
+          </li>
+          <li class="list-group-item py-1 px-2 d-flex justify-content-between align-items-center">
+            <a class="nav-link px-1" id="pills-inprogress-tab" data-toggle="pill" href="#pills-inprogress" role="tab" aria-controls="pills-inprogress" aria-selected="false">En cours</a>
+            <span class="badge badge-default badge-pill"><%=applications.filter(x => x.currentState === 0).length%></span>
+          </li>
+          <li class="list-group-item py-1 px-2 d-flex justify-content-between align-items-center">
+            <a class="nav-link px-1" id="pills-accepted-tab" data-toggle="pill" href="#pills-accepted" role="tab" aria-controls="pills-accepted" aria-selected="false">Acceptées</a>
+            <span class="badge badge-default badge-pill"><%=applications.filter(x => x.currentState === 1).length%></span>
+          </li>
+          <li class="list-group-item py-1 px-2 d-flex justify-content-between align-items-center">
+            <a class="nav-link px-1" id="pills-refused-tab" data-toggle="pill" href="#pills-refused" role="tab" aria-controls="pills-refused" aria-selected="false">Refusées</a>
+            <span class="badge badge-default badge-pill"><%=applications.filter(x => x.currentState === 2).length%></span>
+          </li>
+        </ul>
+      <% }; %>
     </div>
   </div>
   <div class="col-12 col-md-8 col-lg-9">
@@ -39,9 +42,11 @@
             <div class="card-body">
               <h3 class="card-title text-primary"><a href="/companies/<%=application.company.id%>"><%=application.company.name%></a></h3>
               <p class="card-text">
-                Créé : <%=writeDateFR(application.postedAt)%><br>
-                Dernière mise à jour : <%-writeDateFR(application.lastUpdated)%><br>
-                Etat : <%-writeCurrentState(application.currentState)%>
+                Créé : <%=toDateFR(application.postedAt)%><br>
+                <% if(application.postedAt !== application.lastUpdated){%>
+                  Dernière mise à jour : <%-toDateFR(application.lastUpdated)%><br>
+                <% };%>
+                Etat : <%-toCurrentState(application.currentState)%>
                 <a href="/applications/<%=application._id%>"><button class="btn btn-sm btn-info float-right">Plus d'infos</button></a>
               </p>
             </div>
@@ -62,9 +67,9 @@
                 <div class="card-body">
                   <h3 class="card-title text-primary"><a href="/companies/<%=application.company.id%>"><%=application.company.name%></a></h3>
                   <p class="card-text">
-                    Créé : <%=writeDateFR(application.postedAt)%><br>
-                    <%-writeLastUpdateDate(application.updates)%>
-                    Etat : <%-writeCurrentState(application.currentState)%>
+                    Créé : <%=toDateFR(application.postedAt)%><br>
+                    <%-toLastUpdateDate(application.updates)%>
+                    Etat : <%-toCurrentState(application.currentState)%>
                     <a href="/applications/<%=application._id%>"><button class="btn btn-sm btn-info float-right">Plus d'infos</button></a>
                   </p>
                 </div>

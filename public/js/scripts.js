@@ -17,3 +17,24 @@ $("#pills-applications-tab").children("li").children("a").click( () => {
     $("#pills-applications-tab").slideUp("fast","linear")
   }
 })
+
+// Admin overview table
+$(document).ready(function () {
+  $('#allLogTable').DataTable({
+    "pagingType": "numbers",
+    "scrollY": "420px",
+    "scrollCollapse": true,
+    "order": [[ 3, "desc" ]]
+  });
+  $('#studentListTable').DataTable({
+    "pagingType": "numbers",
+    "scrollY": "420px",
+    "scrollCollapse": true
+  }),
+  $('#studentLogTable').DataTable({
+    "pagingType": "numbers",
+    "scrollY": "420px",
+    "scrollCollapse": true,
+    "order": [[ 3, "desc" ]]
+  })
+});

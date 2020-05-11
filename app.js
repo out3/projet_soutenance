@@ -21,7 +21,8 @@ const indexRoutes           = require("./routes/index"),
       companiesRoutes       = require("./routes/companies"),
       contactsRoutes        = require("./routes/contacts"),
       applicationRoutes     = require("./routes/applications"),
-      updateRoutes          = require("./routes/updates");
+      updateRoutes          = require("./routes/updates"),
+      adminRoutes           = require("./routes/admin");
 
 // Setup Express
 app.use(bodyParser.urlencoded({extended: true}));
@@ -57,8 +58,9 @@ app.use(function(req, res, next){
 app.use("/", indexRoutes);
 app.use("/companies", companiesRoutes);
 app.use("/companies", contactsRoutes);
-app.use("/applications", applicationRoutes),
+app.use("/applications", applicationRoutes);
 app.use("/applications", updateRoutes);
+app.use("/admin", adminRoutes);
 
 // Launch Server on Port 8080
 app.listen(process.env.PORT, process.env.IP, function(){

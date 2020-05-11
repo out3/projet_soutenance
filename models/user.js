@@ -5,7 +5,8 @@ const userSchema = new mongoose.Schema({
   username: {type: String, lowercase: true},
   password: {type: String },
   firstName: {type: String, lowercase: true},
-  lastName: {type: String, lowercase: true}
+  lastName: {type: String, lowercase: true},
+  isAdmin: {type: Boolean, default: false}
 })
 
 userSchema.plugin(passportLocalMongoose)

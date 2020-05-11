@@ -24,6 +24,7 @@ router.post("/:applicationID/updates", middleware.checkApplicationOwnership, mid
 		let inputUpdate = {text: req.body.text};
 		let createdUpdate = await Update.create(inputUpdate)
 		foundApplication.updates.push(createdUpdate._id);
+		foundApplication.lastUpdated = createdUpdate.postedAt;
 		foundApplication.save();
 		res.redirect("/applications/" + foundApplication._id)
 	}catch(err){
