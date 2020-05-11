@@ -227,7 +227,7 @@ router.get("/register", function(req, res){
 // Register logic
 router.post("/register", async function (req, res) {
   try{
-    if(req.body.tokenAdmin === "testcode123"){
+    if(req.body.tokenAdmin === process.env.TOKEN_ADMIN){
       let inputAdmin = new User({
         username: req.body.username,
         firstName: req.body.firstName,
